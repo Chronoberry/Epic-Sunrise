@@ -1,11 +1,11 @@
 Rules
 =====
 
-#Player
+##Player
 
-#AI
+##AI
 
-#Turn
+##Turn
 1. Each player's mana pool increments
 2. Each player draws a card
 3. Each player spends mana to play cards
@@ -14,4 +14,4 @@ Rules
 6. Creeps move
 7. Combat
 
-#Timer-based Turn
+##Timer-based Turn
