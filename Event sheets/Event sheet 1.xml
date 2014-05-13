@@ -177,7 +177,7 @@
                 <event-block sid="5083165719436658">
                     <conditions>
                         <condition id="3" name="On touched object" sid="5803865131147026" type="Touch">
-                            <param id="0" name="Object">Wall</param>
+                            <param id="0" name="Object">GridBackground</param>
                         </condition>
                     </conditions>
                     <actions>
