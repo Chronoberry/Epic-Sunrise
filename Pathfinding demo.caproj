@@ -96,6 +96,9 @@
                 <behavior-type name="Turret" sid="1486363321384287">
                     <behavior id="Turret" />
                 </behavior-type>
+                <behavior-type name="Solid" sid="8995958262569602">
+                    <behavior id="solid" />
+                </behavior-type>
             </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1094365147917541" speed="30">
@@ -143,6 +146,45 @@
         </object-type>
         <object-type name="Text" sid="2845874301319546">
             <plugin id="Text" />
+        </object-type>
+        <object-type name="TowerOdin" sid="379982264647599">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Turret" sid="4154529125876128">
+                    <behavior id="Turret" />
+                </behavior-type>
+                <behavior-type name="Solid" sid="1283688196373678">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3429123676280436" speed="30">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.505155">
+                        <collision-poly>
+                            <point x="0.197917" y="0.195876" />
+                            <point x="0.864583" y="0.195876" />
+                            <point x="0.864583" y="0.865979" />
+                            <point x="0.197917" y="0.865979" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="TurretSelector" sid="4168429483358326">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5416640467048393" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Turret2Selector" sid="9438179633641367">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1279479378548448" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
     <families />

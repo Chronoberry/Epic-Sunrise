@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
+        <variable comment="The turret the user has currently selected" constant="0" name="TurretSelect" sid="6379256797545093" static="0" type="number">1</variable>
         <variable comment="Seconds interval between spawning a new enemy." constant="0" name="EnemySpawnTime" sid="6475113749160177" static="0" type="number">2</variable>
         <event-group description="" sid="4910937020671933" title="Global">
             <sub-events>
@@ -161,6 +162,12 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <event-block sid="6557382573573599">
+                    <conditions>
+                        <condition behavior="Pathfinding" id="1" name="On failed to find path" sid="8021990082027965" type="Enemy" />
+                    </conditions>
+                    <actions />
+                </event-block>
             </sub-events>
         </event-group>
         <event-group description="" sid="152918491606407" title="Turret control">
@@ -172,6 +179,9 @@
                     </conditions>
                     <actions>
                         <action behavior="Turret" id="1" name="Add object to target" sid="8282616471136849" type="Turret">
+                            <param id="0" name="Target">Enemy</param>
+                        </action>
+                        <action behavior="Turret" id="1" name="Add object to target" sid="6826290388545864" type="TowerOdin">
                             <param id="0" name="Target">Enemy</param>
                         </action>
                     </actions>
@@ -188,6 +198,21 @@
                             <param id="2" name="Image point">1</param>
                         </action>
                         <action id="3" name="Start" sid="5493634759491774" type="Turret">
+                            <param id="0" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6578484286418145">
+                    <conditions>
+                        <condition behavior="Turret" id="1" name="On shoot" sid="5795489391581771" type="TowerOdin" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="2197932078139302" type="TowerOdin">
+                            <param id="0" name="Object">Bullet</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action id="3" name="Start" sid="7223984332466016" type="TowerOdin">
                             <param id="0" name="From">1</param>
                         </action>
                     </actions>
@@ -210,6 +235,11 @@
                         <condition id="3" name="On touched object" sid="5803865131147026" type="Touch">
                             <param id="0" name="Object">GridBackground</param>
                         </condition>
+                        <condition id="-14" name="Compare variable" sid="9796787596187162" type="System">
+                            <param id="0" name="Variable">TurretSelect</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" sid="2195289992683482" type="System">
@@ -228,6 +258,56 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" sid="2548119708975916" type="Turret" />
+                    </actions>
+                </event-block>
+                <event-block sid="909000398057391">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="175163802705538" type="Touch">
+                            <param id="0" name="Object">GridBackground</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="1644164103899446" type="System">
+                            <param id="0" name="Variable">TurretSelect</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="4470943636932695" type="System">
+                            <param id="0" name="Object to create">TowerOdin</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="X">round((Touch.X - 16) / 32) * 32 + 16</param>
+                            <param id="3" name="Y">round((Touch.Y - 16) / 32) * 32 + 16</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="This is how you select different turrets" sid="5672389924595487" title="Turret Selectors">
+            <sub-events>
+                <event-block sid="7272489924294161">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="5863215678642962" type="Touch">
+                            <param id="0" name="Object">TurretSelector</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1203026147357262" type="System">
+                            <param id="0" name="Variable">TurretSelect</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9154855026407462">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="7137906566546691" type="Touch">
+                            <param id="0" name="Object">Turret2Selector</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1897902832236324" type="System">
+                            <param id="0" name="Variable">TurretSelect</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>

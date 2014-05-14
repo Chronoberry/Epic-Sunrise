@@ -38,8 +38,8 @@
                         <x>0</x>
                         <y>0</y>
                         <z>0</z>
-                        <width>800</width>
-                        <height>600</height>
+                        <width>640</width>
+                        <height>608</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -80,7 +80,7 @@
                                 <cell-size>32</cell-size>
                                 <cell-border>-1</cell-border>
                                 <obstacles>Solids</obstacles>
-                                <max-speed>240</max-speed>
+                                <max-speed>15</max-speed>
                                 <acceleration>9999</acceleration>
                                 <deceleration>9999</deceleration>
                                 <rotate-speed>140</rotate-speed>
@@ -94,8 +94,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>48</x>
-                        <y>48</y>
+                        <x>544</x>
+                        <y>-48</y>
                         <z>0</z>
                         <width>20</width>
                         <height>20</height>
@@ -148,7 +148,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>768</x>
+                        <x>608</x>
                         <y>32</y>
                         <z>0</z>
                         <width>32</width>
@@ -227,7 +227,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>784</x>
+                        <x>624</x>
                         <y>560</y>
                         <z>0</z>
                         <width>16</width>
@@ -235,43 +235,6 @@
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="Turret" uid="23">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Turret">
-                            <properties>
-                                <range>200</range>
-                                <rate-of-fire>0.3</rate-of-fire>
-                                <rotate>Yes</rotate>
-                                <rotate-speed>360</rotate-speed>
-                                <target-mode>Nearest</target-mode>
-                                <predictive-aim>Yes</predictive-aim>
-                                <projectile-speed>400</projectile-speed>
-                                <initial-state>Enabled</initial-state>
-                                <use-collision-cells>Yes</use-collision-cells>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>720</x>
-                        <y>528</y>
-                        <z>0</z>
-                        <width>32</width>
-                        <height>32</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.50515461</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -425,7 +388,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>336</x>
+                        <x>672</x>
                         <y>48</y>
                         <z>0</z>
                         <width>96</width>
@@ -433,6 +396,134 @@
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Turret" uid="6">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Turret">
+                            <properties>
+                                <range>200</range>
+                                <rate-of-fire>0.3</rate-of-fire>
+                                <rotate>Yes</rotate>
+                                <rotate-speed>360</rotate-speed>
+                                <target-mode>Nearest</target-mode>
+                                <predictive-aim>Yes</predictive-aim>
+                                <projectile-speed>400</projectile-speed>
+                                <initial-state>Enabled</initial-state>
+                                <use-collision-cells>Yes</use-collision-cells>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>544</x>
+                        <y>-96</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.50515461</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="TowerOdin" uid="5">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Turret">
+                            <properties>
+                                <range>150</range>
+                                <rate-of-fire>3</rate-of-fire>
+                                <rotate>Yes</rotate>
+                                <rotate-speed>180</rotate-speed>
+                                <target-mode>First in range</target-mode>
+                                <predictive-aim>No</predictive-aim>
+                                <projectile-speed>500</projectile-speed>
+                                <initial-state>Enabled</initial-state>
+                                <use-collision-cells>Yes</use-collision-cells>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>592</x>
+                        <y>-96</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.50515461</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="TurretSelector" uid="7">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>704</x>
+                        <y>128</y>
+                        <z>0</z>
+                        <width>64</width>
+                        <height>64</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Turret2Selector" uid="8">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>704</x>
+                        <y>224</y>
+                        <z>0</z>
+                        <width>64</width>
+                        <height>64</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
