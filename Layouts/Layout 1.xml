@@ -80,7 +80,7 @@
                                 <cell-size>32</cell-size>
                                 <cell-border>-1</cell-border>
                                 <obstacles>Solids</obstacles>
-                                <max-speed>60</max-speed>
+                                <max-speed>240</max-speed>
                                 <acceleration>9999</acceleration>
                                 <deceleration>9999</deceleration>
                                 <rotate-speed>140</rotate-speed>
@@ -214,13 +214,16 @@
                         <opacity>0.800000012</opacity>
                     </world>
                 </instance>
-                <instance type="EnemyTarget" uid="18">
+                <instance type="Nexus" uid="18">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <Health>20</Health>
+                    </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>

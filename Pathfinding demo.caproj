@@ -79,8 +79,11 @@
             </behaviors>
             <texture />
         </object-type>
-        <object-type name="EnemyTarget" sid="6274214601645568">
+        <object-type name="Nexus" sid="6274214601645568">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable comment="The health of the nexus" name="Health" sid="5572227918587508" type="number" />
+            </instance-variables>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6406203327240681" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />

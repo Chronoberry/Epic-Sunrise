@@ -4,6 +4,20 @@
     <name>Event sheet 1</name>
     <events>
         <variable comment="Seconds interval between spawning a new enemy." constant="0" name="EnemySpawnTime" sid="6475113749160177" static="0" type="number">2</variable>
+        <event-group description="" sid="4910937020671933" title="Global">
+            <sub-events>
+                <event-block sid="56000430988418">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="1717754556626347" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="932629099172965" type="Text">
+                            <param id="0" name="Text">&quot;Health: &quot;  &amp; Nexus.Health</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-group description="" sid="1569393713494332" title="Enemy control">
             <sub-events>
                 <comment>Kick off the first enemy moving.</comment>
@@ -13,8 +27,8 @@
                     </conditions>
                     <actions>
                         <action behavior="Pathfinding" id="0" name="Find path" sid="379365684974722" type="Enemy">
-                            <param id="0" name="X">EnemyTarget.X</param>
-                            <param id="1" name="Y">EnemyTarget.Y</param>
+                            <param id="0" name="X">Nexus.X</param>
+                            <param id="1" name="Y">Nexus.Y</param>
                         </action>
                     </actions>
                 </event-block>
@@ -32,8 +46,8 @@
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action behavior="Pathfinding" id="0" name="Find path" sid="6596937688988875" type="Enemy">
-                            <param id="0" name="X">EnemyTarget.X</param>
-                            <param id="1" name="Y">EnemyTarget.Y</param>
+                            <param id="0" name="X">Nexus.X</param>
+                            <param id="1" name="Y">Nexus.Y</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -106,7 +120,7 @@
                 <event-block sid="2735644090319776">
                     <conditions>
                         <condition id="0" name="On collision with another object" sid="3701222411679042" type="Enemy">
-                            <param id="0" name="Object">EnemyTarget</param>
+                            <param id="0" name="Object">Nexus</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -115,16 +129,33 @@
                     <sub-events>
                         <event-block sid="7249863221950828">
                             <conditions>
-                                <condition id="-16" name="Pick random instance" sid="1690331800014062" type="System">
-                                    <param id="0" name="Object">Turret</param>
+                                <condition id="-7" name="Compare instance variable" sid="2190367063595382" type="Nexus">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" sid="4535005745480013" type="Turret" />
-                                <action id="0" name="Spawn another object" sid="4421455352740566" type="Turret">
-                                    <param id="0" name="Object">EnemyDeadParticles</param>
-                                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                                    <param id="2" name="Image point">0</param>
+                                <action id="-12" name="Subtract from" sid="4535005745480013" type="Nexus">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Set text" sid="7344667292293908" type="Text">
+                                    <param id="0" name="Text">&quot;Health: &quot; &amp; Nexus.Health</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5512724768458563">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="8724358222903696" type="Nexus">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="3374323594377021" type="Text">
+                                    <param id="0" name="Text">&quot;You lose!&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
