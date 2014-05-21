@@ -17,6 +17,32 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="7677858876070592">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="5265586642070748" type="System">
+                            <param id="0" name="Interval (seconds)">2.0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" sid="5315955766254186" type="Mana">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="399198490064147">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="9882591992947677" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="5596495902895489" type="Text">
+                            <param id="0" name="Text">&quot;Health : &quot; &amp; Nexus.Health</param>
+                        </action>
+                        <action id="0" name="Set text" sid="349038338099142" type="Mana">
+                            <param id="0" name="Text">&quot;Mana: &quot; &amp; Mana.Mana</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group description="" sid="1569393713494332" title="Enemy control">
@@ -141,9 +167,6 @@
                                     <param id="0" name="Instance variable">Health</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="0" name="Set text" sid="7344667292293908" type="Text">
-                                    <param id="0" name="Text">&quot;Health: &quot; &amp; Nexus.Health</param>
-                                </action>
                             </actions>
                         </event-block>
                         <event-block sid="5512724768458563">
@@ -240,6 +263,11 @@
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">1</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" sid="6464126314517405" type="Mana">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" sid="2195289992683482" type="System">
@@ -247,6 +275,10 @@
                             <param id="1" name="Layer">&quot;Game&quot;</param>
                             <param id="2" name="X">round((Touch.X - 16) / 32) * 32 + 16</param>
                             <param id="3" name="Y">round((Touch.Y - 16) / 32) * 32 + 16</param>
+                        </action>
+                        <action id="-12" name="Subtract from" sid="9399084744056314" type="Mana">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Value">Turret.Cost</param>
                         </action>
                     </actions>
                 </event-block>
@@ -270,6 +302,11 @@
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">2</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" sid="6988846860972071" type="Mana">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" sid="4470943636932695" type="System">
@@ -277,6 +314,10 @@
                             <param id="1" name="Layer">&quot;Game&quot;</param>
                             <param id="2" name="X">round((Touch.X - 16) / 32) * 32 + 16</param>
                             <param id="3" name="Y">round((Touch.Y - 16) / 32) * 32 + 16</param>
+                        </action>
+                        <action id="-12" name="Subtract from" sid="7748497886581964" type="Mana">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Value">TowerOdin.Cost</param>
                         </action>
                     </actions>
                 </event-block>

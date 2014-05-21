@@ -92,6 +92,9 @@
         </object-type>
         <object-type name="Turret" sid="1010419203982662">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Cost" sid="859788146934419" type="number" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Turret" sid="1486363321384287">
                     <behavior id="Turret" />
@@ -149,6 +152,9 @@
         </object-type>
         <object-type name="TowerOdin" sid="379982264647599">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Cost" sid="9075678551720997" type="number" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Turret" sid="4154529125876128">
                     <behavior id="Turret" />
@@ -185,6 +191,12 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
+        </object-type>
+        <object-type name="Mana" sid="7316859569609979">
+            <plugin id="Text" />
+            <instance-variables>
+                <instance-variable name="Mana" sid="9138525525606953" type="number" />
+            </instance-variables>
         </object-type>
     </object-folder>
     <families />
