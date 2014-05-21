@@ -3,7 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
-        <variable comment="The turret the user has currently selected" constant="0" name="TurretSelect" sid="6379256797545093" static="0" type="number">1</variable>
+        <variable comment="The turret the user has currently selected" constant="0" name="TowerSelect" sid="6379256797545093" static="0" type="number">1</variable>
         <variable comment="Seconds interval between spawning a new enemy." constant="0" name="EnemySpawnTime" sid="6475113749160177" static="0" type="number">2</variable>
         <event-group description="" sid="4910937020671933" title="Global">
             <sub-events>
@@ -73,7 +73,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" sid="6156357196262562" type="EnemySpawner">
+                        <action id="0" name="Spawn another object" sid="6156357196262562" type="Lair">
                             <param id="0" name="Object">Enemy</param>
                             <param id="1" name="Layer">&quot;Game&quot;</param>
                             <param id="2" name="Image point">0</param>
@@ -114,17 +114,36 @@
                 <comment>When bullets hit enemies, make it subtract from health and spawn some particles.</comment>
                 <event-block sid="3757760960324017">
                     <conditions>
-                        <condition id="0" name="On collision with another object" sid="2324439540611691" type="Bullet">
+                        <condition id="0" name="On collision with another object" sid="2324439540611691" type="TowerBullet">
                             <param id="0" name="Object">Enemy</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-12" name="Subtract from" sid="2424479107563435" type="Enemy">
                             <param id="0" name="Instance variable">health</param>
-                            <param id="1" name="Value">1</param>
+                            <param id="1" name="Value">TowerBullet.Damage</param>
                         </action>
-                        <action id="-9" name="Destroy" sid="5899583099657957" type="Bullet" />
-                        <action id="0" name="Spawn another object" sid="3388602188449933" type="Bullet">
+                        <action id="-9" name="Destroy" sid="5899583099657957" type="TowerBullet" />
+                        <action id="0" name="Spawn another object" sid="3388602188449933" type="TowerBullet">
+                            <param id="0" name="Object">BulletImpactParticles</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6364883664631782">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="7622045509978856" type="TowerOdinBullet">
+                            <param id="0" name="Object">Enemy</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="8153350665888441" type="Enemy">
+                            <param id="0" name="Instance variable">health</param>
+                            <param id="1" name="Value">TowerOdinBullet.Damage</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="7423431685140989" type="TowerBullet" />
+                        <action id="0" name="Spawn another object" sid="2532264154729911" type="TowerBullet">
                             <param id="0" name="Object">BulletImpactParticles</param>
                             <param id="1" name="Layer">&quot;Game&quot;</param>
                             <param id="2" name="Image point">1</param>
@@ -147,7 +166,28 @@
                             <param id="2" name="Image point">0</param>
                         </action>
                         <action id="-9" name="Destroy" sid="8992076207642883" type="Enemy" />
+                        <action id="-12" name="Subtract from" sid="6214782843102849" type="Lair">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="6065579473779831">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="179672730801348" type="Lair">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="745702853085335" type="Health">
+                                    <param id="0" name="Text">&quot;You win!&quot;</param>
+                                </action>
+                                <action id="-26" name="Restart layout" sid="1781544839631846" type="System" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <comment>When an enemy reaches the target, destroy it, but also pick a random turret and destroy that.</comment>
                 <event-block sid="2735644090319776">
@@ -222,7 +262,7 @@
                     </conditions>
                     <actions>
                         <action id="0" name="Spawn another object" sid="45990768043092" type="Tower">
-                            <param id="0" name="Object">Bullet</param>
+                            <param id="0" name="Object">TowerBullet</param>
                             <param id="1" name="Layer">&quot;Game&quot;</param>
                             <param id="2" name="Image point">1</param>
                         </action>
@@ -237,7 +277,7 @@
                     </conditions>
                     <actions>
                         <action id="0" name="Spawn another object" sid="2197932078139302" type="TowerOdin">
-                            <param id="0" name="Object">Bullet</param>
+                            <param id="0" name="Object">TowerOdinBullet</param>
                             <param id="1" name="Layer">&quot;Game&quot;</param>
                             <param id="2" name="Image point">1</param>
                         </action>
@@ -247,15 +287,26 @@
                     </actions>
                 </event-block>
                 <comment>To prevent bullets that miss flying across the whole screen, destroy them when they&apos;ve travelled out of range.</comment>
-                <event-block sid="6759520405915428">
+                <event-block sid="1908719475020233">
                     <conditions>
-                        <condition behavior="Bullet" id="1" name="Compare distance travelled" sid="949391682968056" type="Bullet">
+                        <condition behavior="Bullet" id="1" name="Compare distance travelled" sid="1278368426411924" type="TowerOdinBullet">
                             <param id="0" name="Comparison">5</param>
                             <param id="1" name="Distance">100</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" sid="8518059817914135" type="Bullet" />
+                        <action id="-9" name="Destroy" sid="808885931806389" type="TowerOdinBullet" />
+                    </actions>
+                </event-block>
+                <event-block sid="6759520405915428">
+                    <conditions>
+                        <condition behavior="Bullet" id="1" name="Compare distance travelled" sid="949391682968056" type="TowerBullet">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Distance">100</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="8518059817914135" type="TowerBullet" />
                     </actions>
                 </event-block>
                 <comment>Create new turrets by touching the walls.</comment>
@@ -265,7 +316,7 @@
                             <param id="0" name="Object">GridBackground</param>
                         </condition>
                         <condition id="-14" name="Compare variable" sid="9796787596187162" type="System">
-                            <param id="0" name="Variable">TurretSelect</param>
+                            <param id="0" name="Variable">TowerSelect</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">1</param>
                         </condition>
@@ -304,7 +355,7 @@
                             <param id="0" name="Object">GridBackground</param>
                         </condition>
                         <condition id="-14" name="Compare variable" sid="1644164103899446" type="System">
-                            <param id="0" name="Variable">TurretSelect</param>
+                            <param id="0" name="Variable">TowerSelect</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">2</param>
                         </condition>
@@ -339,7 +390,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="1203026147357262" type="System">
-                            <param id="0" name="Variable">TurretSelect</param>
+                            <param id="0" name="Variable">TowerSelect</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
@@ -352,7 +403,7 @@
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="1897902832236324" type="System">
-                            <param id="0" name="Variable">TurretSelect</param>
+                            <param id="0" name="Variable">TowerSelect</param>
                             <param id="1" name="Value">2</param>
                         </action>
                     </actions>

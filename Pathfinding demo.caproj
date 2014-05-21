@@ -116,8 +116,11 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Bullet" sid="988527955145373">
+        <object-type name="TowerBullet" sid="988527955145373">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Damage" sid="7024341871994858" type="number" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="1468119965161255">
                     <behavior id="Bullet" />
@@ -131,8 +134,11 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="EnemySpawner" sid="7006105849575117">
+        <object-type name="Lair" sid="7006105849575117">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Health" sid="8325271376288913" type="number" />
+            </instance-variables>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="563485037978242" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
@@ -203,6 +209,24 @@
         </object-type>
         <object-type name="TowerOdinCost" sid="2869818828511773">
             <plugin id="Text" />
+        </object-type>
+        <object-type name="TowerOdinBullet" sid="6260672103666434">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Damage" sid="3496077242352263" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="7215810199418205">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5833965689700051" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0.6">
+                        <image-point name="Imagepoint 1" x="1" y="0.6" />
+                    </frame>
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
     <families />
