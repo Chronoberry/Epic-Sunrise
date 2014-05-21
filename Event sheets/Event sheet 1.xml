@@ -271,8 +271,8 @@
                         </condition>
                         <condition id="-7" name="Compare instance variable" sid="6464126314517405" type="Mana">
                             <param id="0" name="Instance variable">Mana</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">0</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">Tower.Cost</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -310,8 +310,8 @@
                         </condition>
                         <condition id="-7" name="Compare instance variable" sid="6988846860972071" type="Mana">
                             <param id="0" name="Instance variable">Mana</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">0</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">TowerOdin.Cost</param>
                         </condition>
                     </conditions>
                     <actions>
