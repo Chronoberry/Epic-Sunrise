@@ -90,7 +90,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Turret" sid="1010419203982662">
+        <object-type name="Tower" sid="1010419203982662">
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="Cost" sid="859788146934419" type="number" />
@@ -147,7 +147,7 @@
             <plugin id="Particles" />
             <texture />
         </object-type>
-        <object-type name="Text" sid="2845874301319546">
+        <object-type name="Health" sid="2845874301319546">
             <plugin id="Text" />
         </object-type>
         <object-type name="TowerOdin" sid="379982264647599">
@@ -176,7 +176,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="TurretSelector" sid="4168429483358326">
+        <object-type name="TowerSelector" sid="4168429483358326">
             <plugin id="Sprite" />
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5416640467048393" speed="5">
@@ -184,7 +184,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Turret2Selector" sid="9438179633641367">
+        <object-type name="TowerOdinSelector" sid="9438179633641367">
             <plugin id="Sprite" />
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1279479378548448" speed="5">
@@ -197,6 +197,12 @@
             <instance-variables>
                 <instance-variable name="Mana" sid="9138525525606953" type="number" />
             </instance-variables>
+        </object-type>
+        <object-type name="TowerCost" sid="9809164248983908">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="TowerOdinCost" sid="2869818828511773">
+            <plugin id="Text" />
         </object-type>
     </object-folder>
     <families />

@@ -12,8 +12,14 @@
                         <condition id="-2" name="On start of layout" sid="1717754556626347" type="System" />
                     </conditions>
                     <actions>
-                        <action id="0" name="Set text" sid="932629099172965" type="Text">
+                        <action id="0" name="Set text" sid="932629099172965" type="Health">
                             <param id="0" name="Text">&quot;Health: &quot;  &amp; Nexus.Health</param>
+                        </action>
+                        <action id="0" name="Set text" sid="501066008921844" type="TowerCost">
+                            <param id="0" name="Text">Tower.Cost &amp; &quot; mana&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="9682200827310088" type="TowerOdinCost">
+                            <param id="0" name="Text">TowerOdin.Cost &amp; &quot; mana&quot;</param>
                         </action>
                     </actions>
                 </event-block>
@@ -35,7 +41,7 @@
                         <condition id="-1" name="Every tick" sid="9882591992947677" type="System" />
                     </conditions>
                     <actions>
-                        <action id="0" name="Set text" sid="5596495902895489" type="Text">
+                        <action id="0" name="Set text" sid="5596495902895489" type="Health">
                             <param id="0" name="Text">&quot;Health : &quot; &amp; Nexus.Health</param>
                         </action>
                         <action id="0" name="Set text" sid="349038338099142" type="Mana">
@@ -178,7 +184,7 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="0" name="Set text" sid="3374323594377021" type="Text">
+                                <action id="0" name="Set text" sid="3374323594377021" type="Health">
                                     <param id="0" name="Text">&quot;You lose!&quot;</param>
                                 </action>
                             </actions>
@@ -201,7 +207,7 @@
                         <condition id="-2" name="On start of layout" sid="8213731277183264" type="System" />
                     </conditions>
                     <actions>
-                        <action behavior="Turret" id="1" name="Add object to target" sid="8282616471136849" type="Turret">
+                        <action behavior="Turret" id="1" name="Add object to target" sid="8282616471136849" type="Tower">
                             <param id="0" name="Target">Enemy</param>
                         </action>
                         <action behavior="Turret" id="1" name="Add object to target" sid="6826290388545864" type="TowerOdin">
@@ -212,15 +218,15 @@
                 <comment>When shooting, spawn a bullet.</comment>
                 <event-block sid="5250307321215864">
                     <conditions>
-                        <condition behavior="Turret" id="1" name="On shoot" sid="6354126049626833" type="Turret" />
+                        <condition behavior="Turret" id="1" name="On shoot" sid="6354126049626833" type="Tower" />
                     </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" sid="45990768043092" type="Turret">
+                        <action id="0" name="Spawn another object" sid="45990768043092" type="Tower">
                             <param id="0" name="Object">Bullet</param>
                             <param id="1" name="Layer">&quot;Game&quot;</param>
                             <param id="2" name="Image point">1</param>
                         </action>
-                        <action id="3" name="Start" sid="5493634759491774" type="Turret">
+                        <action id="3" name="Start" sid="5493634759491774" type="Tower">
                             <param id="0" name="From">1</param>
                         </action>
                     </actions>
@@ -271,25 +277,25 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" sid="2195289992683482" type="System">
-                            <param id="0" name="Object to create">Turret</param>
+                            <param id="0" name="Object to create">Tower</param>
                             <param id="1" name="Layer">&quot;Game&quot;</param>
                             <param id="2" name="X">round((Touch.X - 16) / 32) * 32 + 16</param>
                             <param id="3" name="Y">round((Touch.Y - 16) / 32) * 32 + 16</param>
                         </action>
                         <action id="-12" name="Subtract from" sid="9399084744056314" type="Mana">
                             <param id="0" name="Instance variable">Mana</param>
-                            <param id="1" name="Value">Turret.Cost</param>
+                            <param id="1" name="Value">Tower.Cost</param>
                         </action>
                     </actions>
                 </event-block>
                 <event-block sid="4287074495449406">
                     <conditions>
-                        <condition id="1" name="Is overlapping another object" sid="9794911163540107" type="Turret">
-                            <param id="0" name="Object">Turret</param>
+                        <condition id="1" name="Is overlapping another object" sid="9794911163540107" type="Tower">
+                            <param id="0" name="Object">Tower</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" sid="2548119708975916" type="Turret" />
+                        <action id="-9" name="Destroy" sid="2548119708975916" type="Tower" />
                     </actions>
                 </event-block>
                 <event-block sid="909000398057391">
@@ -328,7 +334,7 @@
                 <event-block sid="7272489924294161">
                     <conditions>
                         <condition id="4" name="Is touching object" sid="5863215678642962" type="Touch">
-                            <param id="0" name="Object">TurretSelector</param>
+                            <param id="0" name="Object">TowerSelector</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -341,7 +347,7 @@
                 <event-block sid="9154855026407462">
                     <conditions>
                         <condition id="4" name="Is touching object" sid="7137906566546691" type="Touch">
-                            <param id="0" name="Object">Turret2Selector</param>
+                            <param id="0" name="Object">TowerOdinSelector</param>
                         </condition>
                     </conditions>
                     <actions>
