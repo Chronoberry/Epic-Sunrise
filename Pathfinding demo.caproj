@@ -44,10 +44,12 @@
         <prop name="Use iOS retina display">All devices</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-type name="Enemy" sid="8811682619186461">
+        <object-type name="MobLvl1" sid="8811682619186461">
             <plugin id="Sprite" />
             <instance-variables>
-                <instance-variable name="health" sid="2006944008311428" type="number" />
+                <instance-variable name="Health" sid="2006944008311428" type="number" />
+                <instance-variable name="Cost" sid="6589242806239842" type="number" />
+                <instance-variable name="Damage" sid="4093462202933241" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Pathfinding" sid="5310410730327848">
@@ -138,6 +140,8 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="Health" sid="8325271376288913" type="number" />
+                <instance-variable name="Mana" sid="5894011048972885" type="number" />
+                <instance-variable comment="Which enemy to spawn" name="EnemyToSpawn" sid="766608476852782" type="number" />
             </instance-variables>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="563485037978242" speed="5">
@@ -228,13 +232,39 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="MobLvl2" sid="4207413309288827">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Health" sid="6533713341471525" type="number" />
+                <instance-variable name="Cost" sid="7158634591483212" type="number" />
+                <instance-variable name="Damage" sid="8812137151246944" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Pathfinding" sid="3667828465648157">
+                    <behavior id="Pathfinding" />
+                </behavior-type>
+                <behavior-type name="Flash" sid="2529226732507627">
+                    <behavior id="Flash" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4780739309878224" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="LevelEndText" sid="2104057594592515">
+            <plugin id="Text" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="1">
-        <layout>Layout 1.xml</layout>
+        <layout>MainGame.xml</layout>
+        <layout>MenuScreen.xml</layout>
     </layout-folder>
     <event-folder expanded="1">
-        <event-sheet>Event sheet 1.xml</event-sheet>
+        <event-sheet>MainGameEvents.xml</event-sheet>
+        <event-sheet>MenuScreenEvents.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Touch" uid="29">

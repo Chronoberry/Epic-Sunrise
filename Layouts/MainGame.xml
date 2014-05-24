@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2layout>
-    <name>Layout 1</name>
+    <name>MainGame</name>
     <sid>4209202784487909</sid>
-    <event-sheet>Event sheet 1</event-sheet>
+    <event-sheet>MainGameEvents</event-sheet>
     <size>
         <width>800</width>
         <height>600</height>
@@ -64,7 +64,7 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
-                <instance type="Enemy" uid="1">
+                <instance type="MobLvl1" uid="1">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -72,7 +72,9 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <health>30</health>
+                        <Health>2</Health>
+                        <Cost>1</Cost>
+                        <Damage>1</Damage>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pathfinding">
@@ -80,7 +82,7 @@
                                 <cell-size>32</cell-size>
                                 <cell-border>-1</cell-border>
                                 <obstacles>Solids</obstacles>
-                                <max-speed>15</max-speed>
+                                <max-speed>40</max-speed>
                                 <acceleration>9999</acceleration>
                                 <deceleration>9999</deceleration>
                                 <rotate-speed>140</rotate-speed>
@@ -284,7 +286,9 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Health>40</Health>
+                        <Health>10</Health>
+                        <Mana>1</Mana>
+                        <EnemyToSpawn>1</EnemyToSpawn>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -367,7 +371,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>416</x>
+                        <x>752</x>
                         <y>-96</y>
                         <z>0</z>
                         <width>128</width>
@@ -469,7 +473,7 @@
                                 <rotate>Yes</rotate>
                                 <rotate-speed>180</rotate-speed>
                                 <target-mode>First in range</target-mode>
-                                <predictive-aim>No</predictive-aim>
+                                <predictive-aim>Yes</predictive-aim>
                                 <projectile-speed>500</projectile-speed>
                                 <initial-state>Enabled</initial-state>
                                 <use-collision-cells>Yes</use-collision-cells>
@@ -657,6 +661,50 @@
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0.600000024</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="MobLvl2" uid="13">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <Health>4</Health>
+                        <Cost>2</Cost>
+                        <Damage>2</Damage>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Pathfinding">
+                            <properties>
+                                <cell-size>32</cell-size>
+                                <cell-border>-1</cell-border>
+                                <obstacles>Solids</obstacles>
+                                <max-speed>40</max-speed>
+                                <acceleration>9999</acceleration>
+                                <deceleration>9999</deceleration>
+                                <rotate-speed>135</rotate-speed>
+                                <rotate-object>Yes</rotate-object>
+                                <diagonals>Enabled</diagonals>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Flash" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>688</x>
+                        <y>-48</y>
+                        <z>0</z>
+                        <width>20</width>
+                        <height>20</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

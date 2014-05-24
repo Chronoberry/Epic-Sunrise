@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>Event sheet 1</name>
+    <name>MainGameEvents</name>
     <events>
+        <variable constant="0" name="LevelEndStatus" sid="1112376278473827" static="0" type="number">0</variable>
         <variable comment="The turret the user has currently selected" constant="0" name="TowerSelect" sid="6379256797545093" static="0" type="number">1</variable>
         <variable comment="Seconds interval between spawning a new enemy." constant="0" name="EnemySpawnTime" sid="6475113749160177" static="0" type="number">2</variable>
         <event-group description="" sid="4910937020671933" title="Global">
@@ -34,8 +35,13 @@
                             <param id="0" name="Instance variable">Mana</param>
                             <param id="1" name="Value">1</param>
                         </action>
+                        <action id="-11" name="Add to" sid="7134359098673471" type="Lair">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
                     </actions>
                 </event-block>
+                <comment>Set a loop to update our text and check our win/lose conditions</comment>
                 <event-block sid="399198490064147">
                     <conditions>
                         <condition id="-1" name="Every tick" sid="9882591992947677" type="System" />
@@ -48,6 +54,44 @@
                             <param id="0" name="Text">&quot;Mana: &quot; &amp; Mana.Mana</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="1468423428877095">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="4131365174895088" type="Nexus">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="4276439578365622" type="System">
+                                    <param id="0" name="Variable">LevelEndStatus</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-2" name="Go to layout" sid="4229638499106899" type="System">
+                                    <param id="0" name="Layout">MenuScreen</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3608937666679003">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="1757123869958672" type="Lair">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="1659259090023656" type="System">
+                                    <param id="0" name="Variable">LevelEndStatus</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-2" name="Go to layout" sid="8413858103935" type="System">
+                                    <param id="0" name="Layout">MenuScreen</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
@@ -59,7 +103,11 @@
                         <condition id="-2" name="On start of layout" sid="6048660777051188" type="System" />
                     </conditions>
                     <actions>
-                        <action behavior="Pathfinding" id="0" name="Find path" sid="379365684974722" type="Enemy">
+                        <action behavior="Pathfinding" id="0" name="Find path" sid="379365684974722" type="MobLvl1">
+                            <param id="0" name="X">Nexus.X</param>
+                            <param id="1" name="Y">Nexus.Y</param>
+                        </action>
+                        <action behavior="Pathfinding" id="0" name="Find path" sid="9425434795638824" type="MobLvl2">
                             <param id="0" name="X">Nexus.X</param>
                             <param id="1" name="Y">Nexus.Y</param>
                         </action>
@@ -73,14 +121,9 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" sid="6156357196262562" type="Lair">
-                            <param id="0" name="Object">Enemy</param>
-                            <param id="1" name="Layer">&quot;Game&quot;</param>
-                            <param id="2" name="Image point">0</param>
-                        </action>
-                        <action behavior="Pathfinding" id="0" name="Find path" sid="6596937688988875" type="Enemy">
-                            <param id="0" name="X">Nexus.X</param>
-                            <param id="1" name="Y">Nexus.Y</param>
+                        <action id="-10" name="Set value" sid="8456723405647145" type="Lair">
+                            <param id="0" name="Instance variable">EnemyToSpawn</param>
+                            <param id="1" name="Value">floor(random(2)) + 1</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -100,27 +143,93 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <event-block sid="4780670390614608">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="802943275078872" type="Lair">
+                                    <param id="0" name="Instance variable">EnemyToSpawn</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="727869311356489" type="Lair">
+                                    <param id="0" name="Instance variable">Mana</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">MobLvl1.Cost</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="8939126872510911" type="Lair">
+                                    <param id="0" name="Object">MobLvl1</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action behavior="Pathfinding" id="0" name="Find path" sid="8268236216630299" type="MobLvl1">
+                                    <param id="0" name="X">Nexus.X</param>
+                                    <param id="1" name="Y">Nexus.Y</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="6673491079584976" type="Lair">
+                                    <param id="0" name="Instance variable">Mana</param>
+                                    <param id="1" name="Value">MobLvl1.Cost</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5358620811626686">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="5884579837608322" type="Lair">
+                                    <param id="0" name="Instance variable">EnemyToSpawn</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="5011897408622309" type="Lair">
+                                    <param id="0" name="Instance variable">Mana</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">MobLvl2.Count</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="3132264687948724" type="Lair">
+                                    <param id="0" name="Object">MobLvl2</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action behavior="Pathfinding" id="0" name="Find path" sid="6981604039552367" type="MobLvl2">
+                                    <param id="0" name="X">Nexus.X</param>
+                                    <param id="1" name="Y">Nexus.Y</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="6213109223830684" type="Lair">
+                                    <param id="0" name="Instance variable">Mana</param>
+                                    <param id="1" name="Value">MobLvl2.Cost</param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-block>
                 <comment>Once a path has been found, start moving along it.</comment>
                 <event-block sid="4832788517579924">
                     <conditions>
-                        <condition behavior="Pathfinding" id="0" name="On path found" sid="4597891180143728" type="Enemy" />
+                        <condition behavior="Pathfinding" id="0" name="On path found" sid="4597891180143728" type="MobLvl1" />
                     </conditions>
                     <actions>
-                        <action behavior="Pathfinding" id="1" name="Move along path" sid="274791569236736" type="Enemy" />
+                        <action behavior="Pathfinding" id="1" name="Move along path" sid="274791569236736" type="MobLvl1" />
+                    </actions>
+                </event-block>
+                <event-block sid="148357339869009">
+                    <conditions>
+                        <condition behavior="Pathfinding" id="0" name="On path found" sid="6421569678736107" type="MobLvl2" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Pathfinding" id="1" name="Move along path" sid="8475013189125412" type="MobLvl2" />
                     </actions>
                 </event-block>
                 <comment>When bullets hit enemies, make it subtract from health and spawn some particles.</comment>
                 <event-block sid="3757760960324017">
                     <conditions>
                         <condition id="0" name="On collision with another object" sid="2324439540611691" type="TowerBullet">
-                            <param id="0" name="Object">Enemy</param>
+                            <param id="0" name="Object">MobLvl1</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-12" name="Subtract from" sid="2424479107563435" type="Enemy">
-                            <param id="0" name="Instance variable">health</param>
+                        <action id="-12" name="Subtract from" sid="2424479107563435" type="MobLvl1">
+                            <param id="0" name="Instance variable">Health</param>
                             <param id="1" name="Value">TowerBullet.Damage</param>
                         </action>
                         <action id="-9" name="Destroy" sid="5899583099657957" type="TowerBullet" />
@@ -134,12 +243,12 @@
                 <event-block sid="6364883664631782">
                     <conditions>
                         <condition id="0" name="On collision with another object" sid="7622045509978856" type="TowerOdinBullet">
-                            <param id="0" name="Object">Enemy</param>
+                            <param id="0" name="Object">MobLvl1</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-12" name="Subtract from" sid="8153350665888441" type="Enemy">
-                            <param id="0" name="Instance variable">health</param>
+                        <action id="-12" name="Subtract from" sid="8153350665888441" type="MobLvl1">
+                            <param id="0" name="Instance variable">Health</param>
                             <param id="1" name="Value">TowerOdinBullet.Damage</param>
                         </action>
                         <action id="-9" name="Destroy" sid="7423431685140989" type="TowerBullet" />
@@ -150,54 +259,96 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="3141706251515036">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="4097409082694226" type="TowerBullet">
+                            <param id="0" name="Object">MobLvl2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="3367120502304284" type="MobLvl2">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">TowerBullet.Damage</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="4950761760485187" type="TowerBullet" />
+                        <action id="0" name="Spawn another object" sid="5741038160331538" type="TowerBullet">
+                            <param id="0" name="Object">BulletImpactParticles</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1731296373629091">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="7528652834158753" type="TowerOdinBullet">
+                            <param id="0" name="Object">MobLvl2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="2850513694735085" type="MobLvl2">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">TowerOdinBullet.Damage</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="8589217831935184" type="TowerBullet" />
+                        <action id="0" name="Spawn another object" sid="758402431382269" type="TowerBullet">
+                            <param id="0" name="Object">BulletImpactParticles</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <comment>Destroy enemies with no health left, throwing in a particles effect.</comment>
                 <event-block sid="7368516189828693">
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="3246318281038546" type="Enemy">
-                            <param id="0" name="Instance variable">health</param>
+                        <condition id="-7" name="Compare instance variable" sid="3246318281038546" type="MobLvl1">
+                            <param id="0" name="Instance variable">Health</param>
                             <param id="1" name="Comparison">3</param>
                             <param id="2" name="Value">0</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" sid="4667924870463321" type="Enemy">
+                        <action id="0" name="Spawn another object" sid="4667924870463321" type="MobLvl1">
                             <param id="0" name="Object">EnemyDeadParticles</param>
                             <param id="1" name="Layer">&quot;Game&quot;</param>
                             <param id="2" name="Image point">0</param>
                         </action>
-                        <action id="-9" name="Destroy" sid="8992076207642883" type="Enemy" />
+                        <action id="-9" name="Destroy" sid="8992076207642883" type="MobLvl1" />
                         <action id="-12" name="Subtract from" sid="6214782843102849" type="Lair">
                             <param id="0" name="Instance variable">Health</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
-                    <sub-events>
-                        <event-block sid="6065579473779831">
-                            <conditions>
-                                <condition id="-7" name="Compare instance variable" sid="179672730801348" type="Lair">
-                                    <param id="0" name="Instance variable">Health</param>
-                                    <param id="1" name="Comparison">3</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Set text" sid="745702853085335" type="Health">
-                                    <param id="0" name="Text">&quot;You win!&quot;</param>
-                                </action>
-                                <action id="-26" name="Restart layout" sid="1781544839631846" type="System" />
-                            </actions>
-                        </event-block>
-                    </sub-events>
+                </event-block>
+                <event-block sid="3938169873705822">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="7656180539119453" type="MobLvl2">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="8363907863885631" type="MobLvl2">
+                            <param id="0" name="Object">EnemyDeadParticles</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="5040341093808167" type="MobLvl2" />
+                        <action id="-12" name="Subtract from" sid="7148954676742597" type="Lair">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
                 </event-block>
                 <comment>When an enemy reaches the target, destroy it, but also pick a random turret and destroy that.</comment>
                 <event-block sid="2735644090319776">
                     <conditions>
-                        <condition id="0" name="On collision with another object" sid="3701222411679042" type="Enemy">
+                        <condition id="0" name="On collision with another object" sid="3701222411679042" type="MobLvl1">
                             <param id="0" name="Object">Nexus</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" sid="3041642669257395" type="Enemy" />
+                        <action id="-9" name="Destroy" sid="3041642669257395" type="MobLvl1" />
                     </actions>
                     <sub-events>
                         <event-block sid="7249863221950828">
@@ -211,21 +362,34 @@
                             <actions>
                                 <action id="-12" name="Subtract from" sid="4535005745480013" type="Nexus">
                                     <param id="0" name="Instance variable">Health</param>
-                                    <param id="1" name="Value">1</param>
+                                    <param id="1" name="Value">MobLvl1.Damage</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="5512724768458563">
+                    </sub-events>
+                </event-block>
+                <event-block sid="9690681235604637">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="1996207654026691" type="MobLvl2">
+                            <param id="0" name="Object">Nexus</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="4951092496836233" type="MobLvl2" />
+                    </actions>
+                    <sub-events>
+                        <event-block sid="1677599717114437">
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" sid="8724358222903696" type="Nexus">
+                                <condition id="-7" name="Compare instance variable" sid="4985071266413513" type="Nexus">
                                     <param id="0" name="Instance variable">Health</param>
-                                    <param id="1" name="Comparison">3</param>
+                                    <param id="1" name="Comparison">4</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="0" name="Set text" sid="3374323594377021" type="Health">
-                                    <param id="0" name="Text">&quot;You lose!&quot;</param>
+                                <action id="-12" name="Subtract from" sid="353917597638325" type="Nexus">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Value">MobLvl2.Damage</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -233,7 +397,7 @@
                 </event-block>
                 <event-block sid="6557382573573599">
                     <conditions>
-                        <condition behavior="Pathfinding" id="1" name="On failed to find path" sid="8021990082027965" type="Enemy" />
+                        <condition behavior="Pathfinding" id="1" name="On failed to find path" sid="8021990082027965" type="MobLvl1" />
                     </conditions>
                     <actions />
                 </event-block>
@@ -248,10 +412,16 @@
                     </conditions>
                     <actions>
                         <action behavior="Turret" id="1" name="Add object to target" sid="8282616471136849" type="Tower">
-                            <param id="0" name="Target">Enemy</param>
+                            <param id="0" name="Target">MobLvl1</param>
                         </action>
                         <action behavior="Turret" id="1" name="Add object to target" sid="6826290388545864" type="TowerOdin">
-                            <param id="0" name="Target">Enemy</param>
+                            <param id="0" name="Target">MobLvl1</param>
+                        </action>
+                        <action behavior="Turret" id="1" name="Add object to target" sid="8576643407969296" type="Tower">
+                            <param id="0" name="Target">MobLvl2</param>
+                        </action>
+                        <action behavior="Turret" id="1" name="Add object to target" sid="3678146479795327" type="TowerOdin">
+                            <param id="0" name="Target">MobLvl2</param>
                         </action>
                     </actions>
                 </event-block>
