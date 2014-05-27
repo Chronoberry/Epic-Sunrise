@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>MenuScreenEvents</name>
+    <events>
+        <event-block sid="958116698988731">
+            <conditions>
+                <condition id="0" name="On any touch start" sid="6202312758188622" type="Touch" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="3614779513428229" type="System">
+                    <param id="0" name="Layout">MainGame</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2021222818325074">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="8554798223422751" type="System">
+                    <param id="0" name="Variable">LevelEndStatus</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="6759717009209381" type="LevelEndText">
+                    <param id="0" name="Text">&quot;You lose :(&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1005850427299873">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="5727001976223437" type="System">
+                    <param id="0" name="Variable">LevelEndStatus</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="9533299072386697" type="LevelEndText">
+                    <param id="0" name="Text">&quot;You win :)&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
