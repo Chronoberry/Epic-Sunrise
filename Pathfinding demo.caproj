@@ -11,6 +11,7 @@
     <saved-with-version>16800</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Rex.Rainbow" id="Rex_Nickname" version="0.100000001">Nickname</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
@@ -18,6 +19,8 @@
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="DragnDrop" version="1">Drag &amp; Drop</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="Flash" version="1">Flash</behavior>
         <behavior author="Scirra" id="Pathfinding" version="1">Pathfinding</behavior>
         <behavior author="Scirra" id="Turret" version="1">Turret</behavior>
@@ -28,8 +31,8 @@
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
     <window-size>
-        <width>800</width>
-        <height>600</height>
+        <width>1136</width>
+        <height>640</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <use-loader-layout>0</use-loader-layout>
@@ -44,27 +47,6 @@
         <prop name="Use iOS retina display">All devices</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-type name="MobLvl1" sid="8811682619186461">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="Health" sid="2006944008311428" type="number" />
-                <instance-variable name="Cost" sid="6589242806239842" type="number" />
-                <instance-variable name="Damage" sid="4093462202933241" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Pathfinding" sid="5310410730327848">
-                    <behavior id="Pathfinding" />
-                </behavior-type>
-                <behavior-type name="Flash" sid="2087895149587855">
-                    <behavior id="Flash" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8098748023520575" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
         <object-type name="Touch" sid="6608947540430408">
             <plugin id="Touch" />
         </object-type>
@@ -74,6 +56,9 @@
         </object-type>
         <object-type name="Wall" sid="6226160932545608">
             <plugin id="TiledBg" />
+            <instance-variables>
+                <instance-variable name="Cost" sid="4741697985522349" type="number" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Solid" sid="8334431597185136">
                     <behavior id="solid" />
@@ -89,32 +74,6 @@
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6406203327240681" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Tower" sid="1010419203982662">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="Cost" sid="859788146934419" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Turret" sid="1486363321384287">
-                    <behavior id="Turret" />
-                </behavior-type>
-                <behavior-type name="Solid" sid="8995958262569602">
-                    <behavior id="solid" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1094365147917541" speed="30">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.505155">
-                        <collision-poly>
-                            <point x="0.197917" y="0.195876" />
-                            <point x="0.864583" y="0.195876" />
-                            <point x="0.864583" y="0.865979" />
-                            <point x="0.197917" y="0.865979" />
-                        </collision-poly>
-                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
@@ -162,17 +121,6 @@
         </object-type>
         <object-type name="TowerOdin" sid="379982264647599">
             <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="Cost" sid="9075678551720997" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Turret" sid="4154529125876128">
-                    <behavior id="Turret" />
-                </behavior-type>
-                <behavior-type name="Solid" sid="1283688196373678">
-                    <behavior id="solid" />
-                </behavior-type>
-            </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3429123676280436" speed="30">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.505155">
@@ -186,15 +134,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="TowerSelector" sid="4168429483358326">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5416640467048393" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="TowerOdinSelector" sid="9438179633641367">
+        <object-type name="TowerOdinCard" sid="9438179633641367">
             <plugin id="Sprite" />
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1279479378548448" speed="5">
@@ -234,19 +174,6 @@
         </object-type>
         <object-type name="MobLvl2" sid="4207413309288827">
             <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="Health" sid="6533713341471525" type="number" />
-                <instance-variable name="Cost" sid="7158634591483212" type="number" />
-                <instance-variable name="Damage" sid="8812137151246944" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Pathfinding" sid="3667828465648157">
-                    <behavior id="Pathfinding" />
-                </behavior-type>
-                <behavior-type name="Flash" sid="2529226732507627">
-                    <behavior id="Flash" />
-                </behavior-type>
-            </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4780739309878224" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
@@ -256,8 +183,105 @@
         <object-type name="LevelEndText" sid="2104057594592515">
             <plugin id="Text" />
         </object-type>
+        <object-type name="WallSelector" sid="164210134766791">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="150068015275854" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="WallSelectorCost" sid="6592161898208161">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Tower1" sid="7976968405153124">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2181363565111717" speed="30">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.505155">
+                        <collision-poly>
+                            <point x="0.197917" y="0.195876" />
+                            <point x="0.864583" y="0.195876" />
+                            <point x="0.864583" y="0.865979" />
+                            <point x="0.197917" y="0.865979" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Nickname" sid="7239119258614288">
+            <plugin id="Rex_Nickname" />
+        </object-type>
+        <object-type name="TowerCard" sid="8210909263036014">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4622532644928511" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="MobLvl1" sid="8830260007951128">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="759443433810514" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
-    <families />
+    <families>
+        <family name="Towers" plugin-id="Sprite" sid="9982432953511039">
+            <members>
+                <member>Tower1</member>
+                <member>TowerOdin</member>
+            </members>
+            <behaviors>
+                <behavior-type name="Turret" sid="4291747457703699">
+                    <behavior id="Turret" />
+                </behavior-type>
+                <behavior-type name="Solid" sid="4048109579616717">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+        </family>
+        <family name="Cards" plugin-id="Sprite" sid="7922419666140143">
+            <members>
+                <member>TowerCard</member>
+                <member>TowerOdinCard</member>
+            </members>
+            <instance-variables>
+                <instance-variable comment="The name of the tower the card will spawn" name="TowerName" sid="7957053238609267" type="string" />
+                <instance-variable comment="The cost to play the card" name="ManaCost" sid="1353408960740154" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="DragDrop" sid="7457347025525812">
+                    <behavior id="DragnDrop" />
+                </behavior-type>
+                <behavior-type name="Fade" sid="1693343343354974">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+        </family>
+        <family name="Enemies" plugin-id="Sprite" sid="8559989399993613">
+            <members>
+                <member>MobLvl1</member>
+                <member>MobLvl2</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="Health" sid="4562699968840445" type="number" />
+                <instance-variable name="ManaCost" sid="2939707100649349" type="number" />
+                <instance-variable name="Damage" sid="4175850727651056" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Pathfinding" sid="6496291270508365">
+                    <behavior id="Pathfinding" />
+                </behavior-type>
+                <behavior-type name="Flash" sid="7915768551000038">
+                    <behavior id="Flash" />
+                </behavior-type>
+            </behaviors>
+        </family>
+    </families>
     <layout-folder expanded="1">
         <layout>MainGame.xml</layout>
         <layout>MenuScreen.xml</layout>
@@ -272,6 +296,7 @@
                 <use-mouse-input>Yes</use-mouse-input>
             </properties>
         </global-instance>
+        <global-instance type="Nickname" uid="20" />
     </global-instances>
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />
