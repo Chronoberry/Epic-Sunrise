@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Global</name>
+    <events>
+        <variable comment="The size of the players current hand" constant="0" name="gHandSize" sid="1824997755193625" static="0" type="number">2</variable>
+        <variable comment="The size of the players deck" constant="0" name="gDeckSize" sid="9165833305620651" static="0" type="number">30</variable>
+    </events>
+</c2eventsheet>
