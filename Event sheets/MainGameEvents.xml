@@ -9,7 +9,7 @@
         <variable constant="0" name="LevelEndStatus" sid="1112376278473827" static="0" type="text"></variable>
         <variable comment="The turret the user has currently selected" constant="0" name="TowerSelect" sid="6379256797545093" static="0" type="text">tower1</variable>
         <variable comment="Seconds interval between spawning a new enemy." constant="0" name="EnemySpawnTime" sid="6475113749160177" static="0" type="number">2</variable>
-        <event-group description="" sid="4910937020671933" title="Global">
+        <event-group collapsed="1" description="" sid="4910937020671933" title="Global">
             <sub-events>
                 <event-block sid="56000430988418">
                     <conditions>
@@ -114,7 +114,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="This is how you play the tower cards" sid="5672389924595487" title="Card Deployment">
+        <event-group collapsed="1" description="This is how you play the tower cards" sid="5672389924595487" title="Card Deployment">
             <sub-events>
                 <event-block sid="7272489924294161">
                     <conditions>
@@ -328,8 +328,8 @@
                     <actions>
                         <action id="9" name="Broadcast message" sid="1480109855925731" type="Multiplayer">
                             <param id="0" name="From ID">Multiplayer.FromID</param>
-                            <param id="1" name="Tag">&quot;Lose&quot;</param>
-                            <param id="2" name="Message">&quot;Lose&quot;</param>
+                            <param id="1" name="Tag">&quot;Defeat&quot;</param>
+                            <param id="2" name="Message">&quot;Defeat&quot;</param>
                             <param id="3" name="Mode">1</param>
                         </action>
                         <action id="-3" name="Create object" sid="3939760149812482" type="System">
@@ -347,7 +347,7 @@
                             <param id="0" name="Object to create">PlayAgain</param>
                             <param id="1" name="Layer">&quot;UI&quot;</param>
                             <param id="2" name="X">LayoutWidth/2-PlayAgain.Width/2</param>
-                            <param id="3" name="Y">LayoutHeight/2-PlayAgain.Height/2+100</param>
+                            <param id="3" name="Y">LayoutHeight/2-PlayAgain.Height/2+150</param>
                         </action>
                     </actions>
                 </event-block>
@@ -367,15 +367,15 @@
                     <actions>
                         <action id="9" name="Broadcast message" sid="6270244921051296" type="Multiplayer">
                             <param id="0" name="From ID">Multiplayer.FromID</param>
-                            <param id="1" name="Tag">&quot;Win&quot;</param>
-                            <param id="2" name="Message">&quot;Win&quot;</param>
+                            <param id="1" name="Tag">&quot;Victory&quot;</param>
+                            <param id="2" name="Message">&quot;Victory&quot;</param>
                             <param id="3" name="Mode">1</param>
                         </action>
-                        <action id="-3" name="Create object" sid="6368679182518111" type="System">
+                        <action id="-3" name="Create object" sid="9164960995104554" type="System">
                             <param id="0" name="Object to create">Victory</param>
                             <param id="1" name="Layer">&quot;UI&quot;</param>
-                            <param id="2" name="X">WindowWidth/2</param>
-                            <param id="3" name="Y">WindowHeight/2</param>
+                            <param id="2" name="X">LayoutWidth/2</param>
+                            <param id="3" name="Y">LayoutHeight/2</param>
                         </action>
                         <action id="-9" name="Set value" sid="8271567269695418" type="System">
                             <param id="0" name="Variable">LevelEndStatus</param>
@@ -402,12 +402,18 @@
                         <condition id="0" name="On clicked" sid="158288974913509" type="PlayAgain" />
                     </conditions>
                     <actions>
-                        <action id="-2" name="Go to layout" sid="1689889981834645" type="System">
-                            <param id="0" name="Layout">MainGame</param>
+                        <action id="9" name="Broadcast message" sid="1625471204192478" type="Multiplayer">
+                            <param id="0" name="From ID">Multiplayer.FromID</param>
+                            <param id="1" name="Tag">&quot;Restart&quot;</param>
+                            <param id="2" name="Message">&quot;Restart&quot;</param>
+                            <param id="3" name="Mode">0</param>
                         </action>
                         <action id="-9" name="Set value" sid="3159673348228025" type="System">
                             <param id="0" name="Variable">LevelEndStatus</param>
                             <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="1689889981834645" type="System">
+                            <param id="0" name="Layout">MainGame</param>
                         </action>
                     </actions>
                 </event-block>
@@ -417,7 +423,7 @@
             <sub-events>
                 <event-group description="" sid="7435193017635269" title="Lair Control">
                     <sub-events>
-                        <event-block sid="3762954102660001">
+                        <event-block collapsed="1" sid="3762954102660001">
                             <conditions>
                                 <condition id="-6" name="Every X seconds" sid="8505455941718818" type="System">
                                     <param id="0" name="Interval (seconds)">EnemySpawnTime</param>
@@ -562,7 +568,7 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <comment>When an enemy reaches the target, destroy it, but also pick a random turret and destroy that.</comment>
+                        <comment>When an enemy reaches the target, destroy it</comment>
                         <event-block sid="2735644090319776">
                             <conditions>
                                 <condition id="0" name="On collision with another object" sid="3701222411679042" type="Enemies">
@@ -594,7 +600,12 @@
                             <conditions>
                                 <condition behavior="Pathfinding" id="1" name="On failed to find path" sid="8021990082027965" type="Enemies" />
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action behavior="Pathfinding" id="0" name="Find path" sid="8461973136088598" type="Enemies">
+                                    <param id="0" name="X">Nexus.X</param>
+                                    <param id="1" name="Y">Nexus.Y</param>
+                                </action>
+                            </actions>
                         </event-block>
                     </sub-events>
                 </event-group>
@@ -605,30 +616,58 @@
                 <event-block sid="5463145454801689">
                     <conditions>
                         <condition id="15" name="On peer message" sid="6421624617367471" type="Multiplayer">
-                            <param id="0" name="Tag">&quot;Lose&quot;</param>
+                            <param id="0" name="Tag">&quot;Defeat&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" sid="5419837117548648" type="System">
                             <param id="0" name="Object to create">Defeat</param>
                             <param id="1" name="Layer">&quot;UI&quot;</param>
-                            <param id="2" name="X">WindowWidth/2</param>
-                            <param id="3" name="Y">WindowHeight/2</param>
+                            <param id="2" name="X">LayoutWidth/2</param>
+                            <param id="3" name="Y">LayoutHeight/2</param>
                         </action>
                     </actions>
                 </event-block>
                 <event-block sid="7436449604989093">
                     <conditions>
                         <condition id="15" name="On peer message" sid="1743494901886235" type="Multiplayer">
-                            <param id="0" name="Tag">&quot;Win&quot;</param>
+                            <param id="0" name="Tag">&quot;Victory&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-3" name="Create object" sid="7557235413593201" type="System">
+                        <action id="-3" name="Create object" sid="9190521286768966" type="System">
                             <param id="0" name="Object to create">Victory</param>
                             <param id="1" name="Layer">&quot;UI&quot;</param>
-                            <param id="2" name="X">WindowWidth/2</param>
-                            <param id="3" name="Y">WindowHeight/2</param>
+                            <param id="2" name="X">LayoutWidth/2</param>
+                            <param id="3" name="Y">LayoutHeight/2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7373905577184035">
+                    <conditions>
+                        <condition id="15" name="On peer message" sid="2060650312825505" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;Restart&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="711545398857223" type="System">
+                            <param id="0" name="Layout">MainGame</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6359498031622163">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="3743032823852521" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="6549351642304756" type="Enemies">
+                            <param id="0" name="Layer">&quot;Game&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="8259338494979054" type="Cards">
+                            <param id="0" name="Layer">&quot;Game&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="3899978223515076" type="Towers">
+                            <param id="0" name="Layer">&quot;Game&quot;</param>
                         </action>
                     </actions>
                 </event-block>
