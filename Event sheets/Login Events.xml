@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Login Events</name>
+    <events>
+        <comment>Client username</comment>
+        <variable constant="0" name="Username" sid="3360562530627326" static="0" type="text"></variable>
+        <event-block sid="6028382050275193">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8798223263412772" type="System" />
+            </conditions>
+            <actions>
+                <action id="6" name="Set focused" sid="6319148956117534" type="UsernameTextBox" />
+            </actions>
+        </event-block>
+        <event-block sid="9857574523104952">
+            <conditions>
+                <condition id="1" name="On text changed" sid="2144885219043398" type="UsernameTextBox" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="9421358531804875">
+                    <conditions>
+                        <condition id="0" name="Compare text" sid="4084976244542378" type="UsernameTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Set enabled" sid="701062185606896" type="JoinButton">
+                            <param id="0" name="Mode">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2002947395479433">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="5423669905528388" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Set enabled" sid="1469061094593367" type="JoinButton">
+                            <param id="0" name="Mode">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="4144939100975617">
+            <conditions>
+                <condition id="0" name="On clicked" sid="4281163207135503" type="JoinButton" />
+                <condition id="2" name="Key is down" sid="6743364777500877" type="Keyboard">
+                    <param id="0" name="Key">13 (Return)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="6452125516255997">
+                    <conditions>
+                        <condition id="12" name="Supports multiplayer" sid="3848437257850738" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="1064661533007643" type="System">
+                            <param id="0" name="Variable">Username</param>
+                            <param id="1" name="Value">UsernameTextBox.Text</param>
+                        </action>
+                        <action id="-25" name="Go to layout (by name)" sid="2993975562028656" type="System">
+                            <param id="0" name="Layout">&quot;MainGame&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
