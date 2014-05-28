@@ -417,7 +417,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Button" uid="32">
+                <instance type="PlayAgain" uid="32">
                     <properties>
                         <type>Button</type>
                         <text>Play Again</text>
@@ -431,7 +431,7 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>760</x>
+                        <x>448</x>
                         <y>-112</y>
                         <z>0</z>
                         <width>240</width>
