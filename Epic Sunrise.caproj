@@ -53,7 +53,7 @@
         <prop name="Use iOS retina display">All devices</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="1" name="Login">
+        <object-folder expanded="0" name="Login">
             <object-type name="FormLabel" sid="413805614457078">
                 <plugin id="Text" />
             </object-type>
@@ -67,12 +67,231 @@
                 <plugin id="Text" />
             </object-type>
         </object-folder>
+        <object-folder expanded="1" name="UI Screens">
+            <object-type name="Defeat" sid="7073490190933551">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1977612700737917" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.28081" y="0.498437" />
+                                <point x="0.5" y="0.201562" />
+                                <point x="0.699824" y="0.532812" />
+                                <point x="0.699824" y="0.467187" />
+                                <point x="0.5" y="0.8" />
+                                <point x="0.28081" y="0.501562" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Victory" sid="6070687782862779">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5500352395531592" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.24912" y="0.442187" />
+                                <point x="0.5" y="0.201562" />
+                                <point x="0.75" y="0.44375" />
+                                <point x="0.727113" y="0.5" />
+                                <point x="0.724472" y="0.510938" />
+                                <point x="0.5" y="0.8" />
+                                <point x="0.270246" y="0.520312" />
+                                <point x="0.265845" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Button" sid="1111225896357736">
+                <plugin id="Button" />
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Cards">
+            <object-type global="1" name="Deck" sid="300392175571716">
+                <plugin id="Arr" />
+            </object-type>
+            <object-type name="DeckImage" sid="7228740580534745">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="124633915864614" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.0175159" y="0.0117773" />
+                                <point x="0.982484" y="0.0117773" />
+                                <point x="0.998408" y="0.5" />
+                                <point x="0.982484" y="0.988223" />
+                                <point x="0.5" y="1" />
+                                <point x="0.0207006" y="0.986081" />
+                                <point x="0.00159236" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="DeckText" sid="5469382341376982">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="TowerCard" sid="8210909263036014">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4622532644928511" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="TowerCost" sid="9809164248983908">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="TowerOdinCard" sid="9438179633641367">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1279479378548448" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="TowerOdinCost" sid="2869818828511773">
+                <plugin id="Text" />
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Background">
+            <object-type name="GridBackground" sid="9436312214470827">
+                <plugin id="TiledBg" />
+                <texture />
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Enemies">
+            <object-type name="EnemyDeadParticles" sid="3164358149442949">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+            <object-type name="MobLvl1" sid="8830260007951128">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="759443433810514" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="MobLvl2" sid="4207413309288827">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4780739309878224" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Towers">
+            <object-type name="BulletImpactParticles" sid="1066300908233148">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+            <object-type name="Tower1" sid="7976968405153124">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2181363565111717" speed="30">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.505155">
+                            <collision-poly>
+                                <point x="0.197917" y="0.195876" />
+                                <point x="0.864583" y="0.195876" />
+                                <point x="0.864583" y="0.865979" />
+                                <point x="0.197917" y="0.865979" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="TowerOdin" sid="379982264647599">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3429123676280436" speed="30">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.505155">
+                            <collision-poly>
+                                <point x="0.197917" y="0.195876" />
+                                <point x="0.864583" y="0.195876" />
+                                <point x="0.864583" y="0.865979" />
+                                <point x="0.197917" y="0.865979" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="TowerBullet" sid="988527955145373">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="Damage" sid="7024341871994858" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Bullet" sid="1468119965161255">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="977399044251869" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.6">
+                            <image-point name="Imagepoint 1" x="1" y="0.6" />
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="TowerOdinBullet" sid="6260672103666434">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="Damage" sid="3496077242352263" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Bullet" sid="7215810199418205">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5833965689700051" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.6">
+                            <image-point name="Imagepoint 1" x="1" y="0.6" />
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Buildings">
+            <object-type name="Lair" sid="7006105849575117">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="Health" sid="8325271376288913" type="number" />
+                    <instance-variable name="Mana" sid="5894011048972885" type="number" />
+                    <instance-variable comment="Which enemy to spawn" name="EnemyToSpawn" sid="766608476852782" type="number" />
+                </instance-variables>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="563485037978242" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Nexus" sid="6274214601645568">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="The health of the nexus" name="Health" sid="5572227918587508" type="number" />
+                </instance-variables>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6406203327240681" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Spawnbox" sid="6512631071123149">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4023820498187019" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
         <object-type name="Touch" sid="6608947540430408">
             <plugin id="Touch" />
-        </object-type>
-        <object-type name="GridBackground" sid="9436312214470827">
-            <plugin id="TiledBg" />
-            <texture />
         </object-type>
         <object-type name="Wall" sid="6226160932545608">
             <plugin id="TiledBg" />
@@ -86,122 +305,14 @@
             </behaviors>
             <texture />
         </object-type>
-        <object-type name="Nexus" sid="6274214601645568">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable comment="The health of the nexus" name="Health" sid="5572227918587508" type="number" />
-            </instance-variables>
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6406203327240681" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="TowerBullet" sid="988527955145373">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="Damage" sid="7024341871994858" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Bullet" sid="1468119965161255">
-                    <behavior id="Bullet" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="977399044251869" speed="5">
-                    <frame duration="1" hotspotX="0" hotspotY="0.6">
-                        <image-point name="Imagepoint 1" x="1" y="0.6" />
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Lair" sid="7006105849575117">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="Health" sid="8325271376288913" type="number" />
-                <instance-variable name="Mana" sid="5894011048972885" type="number" />
-                <instance-variable comment="Which enemy to spawn" name="EnemyToSpawn" sid="766608476852782" type="number" />
-            </instance-variables>
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="563485037978242" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="BulletImpactParticles" sid="1066300908233148">
-            <plugin id="Particles" />
-            <texture />
-        </object-type>
-        <object-type name="EnemyDeadParticles" sid="3164358149442949">
-            <plugin id="Particles" />
-            <texture />
-        </object-type>
         <object-type name="Health" sid="2845874301319546">
             <plugin id="Text" />
-        </object-type>
-        <object-type name="TowerOdin" sid="379982264647599">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3429123676280436" speed="30">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.505155">
-                        <collision-poly>
-                            <point x="0.197917" y="0.195876" />
-                            <point x="0.864583" y="0.195876" />
-                            <point x="0.864583" y="0.865979" />
-                            <point x="0.197917" y="0.865979" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="TowerOdinCard" sid="9438179633641367">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1279479378548448" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
         </object-type>
         <object-type name="Mana" sid="7316859569609979">
             <plugin id="Text" />
             <instance-variables>
                 <instance-variable name="Mana" sid="9138525525606953" type="number" />
             </instance-variables>
-        </object-type>
-        <object-type name="TowerCost" sid="9809164248983908">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="TowerOdinCost" sid="2869818828511773">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="TowerOdinBullet" sid="6260672103666434">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="Damage" sid="3496077242352263" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Bullet" sid="7215810199418205">
-                    <behavior id="Bullet" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5833965689700051" speed="5">
-                    <frame duration="1" hotspotX="0" hotspotY="0.6">
-                        <image-point name="Imagepoint 1" x="1" y="0.6" />
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="MobLvl2" sid="4207413309288827">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4780739309878224" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="LevelEndText" sid="2104057594592515">
-            <plugin id="Text" />
         </object-type>
         <object-type name="WallSelector" sid="164210134766791">
             <plugin id="Sprite" />
@@ -214,63 +325,8 @@
         <object-type name="WallSelectorCost" sid="6592161898208161">
             <plugin id="Text" />
         </object-type>
-        <object-type name="Tower1" sid="7976968405153124">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2181363565111717" speed="30">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.505155">
-                        <collision-poly>
-                            <point x="0.197917" y="0.195876" />
-                            <point x="0.864583" y="0.195876" />
-                            <point x="0.864583" y="0.865979" />
-                            <point x="0.197917" y="0.865979" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
         <object-type name="Nickname" sid="7239119258614288">
             <plugin id="Rex_Nickname" />
-        </object-type>
-        <object-type name="TowerCard" sid="8210909263036014">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4622532644928511" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="MobLvl1" sid="8830260007951128">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="759443433810514" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type global="1" name="Deck" sid="300392175571716">
-            <plugin id="Arr" />
-        </object-type>
-        <object-type name="DeckImage" sid="7228740580534745">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="124633915864614" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <collision-poly>
-                            <point x="0.0175159" y="0.0117773" />
-                            <point x="0.982484" y="0.0117773" />
-                            <point x="0.998408" y="0.5" />
-                            <point x="0.982484" y="0.988223" />
-                            <point x="0.5" y="1" />
-                            <point x="0.0207006" y="0.986081" />
-                            <point x="0.00159236" y="0.5" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="DeckText" sid="5469382341376982">
-            <plugin id="Text" />
         </object-type>
         <object-type name="Multiplayer" sid="2518617913063091">
             <plugin id="Multiplayer" />
@@ -282,22 +338,6 @@
             <plugin id="Sprite" />
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6077453528383546" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Win" sid="6070687782862779">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5500352395531592" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Lose" sid="7073490190933551">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1977612700737917" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
@@ -356,14 +396,12 @@
             </behaviors>
         </family>
     </families>
-    <layout-folder expanded="1">
+    <layout-folder expanded="0">
         <layout>MainGame.xml</layout>
-        <layout>MenuScreen.xml</layout>
         <layout>Login.xml</layout>
     </layout-folder>
-    <event-folder expanded="1">
+    <event-folder expanded="0">
         <event-sheet>MainGameEvents.xml</event-sheet>
-        <event-sheet>MenuScreenEvents.xml</event-sheet>
         <event-sheet>Global.xml</event-sheet>
         <event-sheet>Login Events.xml</event-sheet>
     </event-folder>

@@ -29,12 +29,12 @@
             <instances>
                 <instance type="FormLabel" uid="15">
                     <properties>
-                        <text>Epic Sunshinery</text>
+                        <text>Epic Sunrise</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
+                        <font>Charlemagne Std,-64,700,0</font>
                         <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
                         <line-height>0</line-height>
@@ -42,11 +42,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>446</x>
-                        <y>186</y>
+                        <x>286.499908447</x>
+                        <y>95.637329102</y>
                         <z>0</z>
-                        <width>200</width>
-                        <height>30</height>
+                        <width>563.000183105</width>
+                        <height>120.362670898</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -61,18 +61,18 @@
                         <tooltip></tooltip>
                         <initial-visibility>Visible</initial-visibility>
                         <enabled>Yes</enabled>
-                        <auto-font-size>Yes</auto-font-size>
+                        <auto-font-size>No</auto-font-size>
                         <id-optional></id-optional>
                         <checked>No</checked>
                     </properties>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>596</x>
-                        <y>223</y>
+                        <x>608.45501709</x>
+                        <y>220</y>
                         <z>0</z>
-                        <width>72</width>
-                        <height>24</height>
+                        <width>100</width>
+                        <height>40</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -88,17 +88,17 @@
                         <read-only>No</read-only>
                         <spell-check>No</spell-check>
                         <type>Text</type>
-                        <auto-font-size>Yes</auto-font-size>
+                        <auto-font-size>No</auto-font-size>
                         <id-optional></id-optional>
                     </properties>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>439</x>
-                        <y>224</y>
+                        <x>400</x>
+                        <y>220</y>
                         <z>0</z>
-                        <width>150</width>
-                        <height>22</height>
+                        <width>200</width>
+                        <height>40</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
