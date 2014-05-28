@@ -198,6 +198,7 @@
                 <event-block sid="5047235259880581">
                     <conditions>
                         <condition id="-2" name="On start of layout" sid="9043125860805483" type="System" />
+                        <condition id="7" inverted="1" name="Is connected" sid="6865487705433473" type="Multiplayer" />
                     </conditions>
                     <actions>
                         <action id="11" name="Sync object" sid="593622381784258" type="Multiplayer">
@@ -382,6 +383,12 @@
                             <param id="1" name="Value">&quot;Victory&quot;</param>
                         </action>
                         <action id="-9" name="Destroy" sid="8328415492531915" type="Lair" />
+                        <action id="-3" name="Create object" sid="3151352662591252" type="System">
+                            <param id="0" name="Object to create">PlayAgain</param>
+                            <param id="1" name="Layer">&quot;UI&quot;</param>
+                            <param id="2" name="X">LayoutWidth/2-PlayAgain.Width/2</param>
+                            <param id="3" name="Y">LayoutHeight/2-PlayAgain.Height/2+150</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="9613413846527504">

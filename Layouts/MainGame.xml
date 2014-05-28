@@ -593,7 +593,7 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Health>3</Health>
+                        <Health>6</Health>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
