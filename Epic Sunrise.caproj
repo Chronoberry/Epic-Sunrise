@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>Pathfinding demo</name>
+    <name>Epic Sunrise</name>
     <description></description>
     <version>1.0</version>
     <author></author>
@@ -8,7 +8,7 @@
     <author-website></author-website>
     <app-id></app-id>
     <unique-id>uzos4ezzjulo</unique-id>
-    <saved-with-version>16800</saved-with-version>
+    <saved-with-version>17000</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
