@@ -41,190 +41,6 @@
                 <comment>Set a loop to update our text and check our win/lose conditions</comment>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="7435193017635269" title="Lair Control">
-            <sub-events>
-                <event-block sid="3762954102660001">
-                    <conditions>
-                        <condition id="-6" name="Every X seconds" sid="8505455941718818" type="System">
-                            <param id="0" name="Interval (seconds)">EnemySpawnTime</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <comment>Every time an enemy spawn, the spawn interval reduces slightly.  This makes them very gradually come faster!  Make sure it doesn&apos;t go below every 0.5 seconds though.</comment>
-                        <event-block sid="3811749441163612">
-                            <conditions>
-                                <condition id="-14" name="Compare variable" sid="8142076536884116" type="System">
-                                    <param id="0" name="Variable">EnemySpawnTime</param>
-                                    <param id="1" name="Comparison">4</param>
-                                    <param id="2" name="Value">0.5</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-11" name="Subtract from" sid="7782623380689833" type="System">
-                                    <param id="0" name="Variable">EnemySpawnTime</param>
-                                    <param id="1" name="Value">0.01</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="1832309412571278">
-                            <conditions>
-                                <condition id="-7" name="Compare instance variable" sid="9403852907279757" type="Lair">
-                                    <param id="0" name="Instance variable">Mana</param>
-                                    <param id="1" name="Comparison">5</param>
-                                    <param id="2" name="Value">Enemies.ManaCost</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Spawn another object" sid="6525767773435702" type="Lair">
-                                    <param id="0" name="Object">Enemies</param>
-                                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
-                                <action behavior="Pathfinding" id="0" name="Find path" sid="6375990928291541" type="Enemies">
-                                    <param id="0" name="X">Nexus.X</param>
-                                    <param id="1" name="Y">Nexus.Y</param>
-                                </action>
-                                <action id="-12" name="Subtract from" sid="2121904786830861" type="Lair">
-                                    <param id="0" name="Instance variable">Mana</param>
-                                    <param id="1" name="Value">Enemies.ManaCost</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-            </sub-events>
-        </event-group>
-        <event-group collapsed="1" description="" sid="1569393713494332" title="Enemy control">
-            <sub-events>
-                <event-block sid="7919657993306624">
-                    <conditions>
-                        <condition id="-1" name="Every tick" sid="2591297902344835" type="System" />
-                    </conditions>
-                    <actions>
-                        <action behavior="Pathfinding" id="4" name="Regenerate obstacle map" sid="9770475659724169" type="Enemies" />
-                        <action behavior="Pathfinding" id="5" name="Add obstacle" sid="2342165491577256" type="Enemies">
-                            <param id="0" name="Obstacle">Towers</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="5807794928573664">
-                    <conditions>
-                        <condition id="-18" name="On created" sid="2177207508915771" type="Enemies" />
-                    </conditions>
-                    <actions>
-                        <action behavior="Pathfinding" id="0" name="Find path" sid="1396814795242966" type="Enemies">
-                            <param id="0" name="X">Nexus.X</param>
-                            <param id="1" name="Y">Nexus.Y</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Once a path has been found, start moving along it.</comment>
-                <event-block sid="4832788517579924">
-                    <conditions>
-                        <condition behavior="Pathfinding" id="0" name="On path found" sid="4597891180143728" type="Enemies" />
-                    </conditions>
-                    <actions>
-                        <action behavior="Pathfinding" id="1" name="Move along path" sid="274791569236736" type="Enemies" />
-                    </actions>
-                </event-block>
-                <comment>When bullets hit enemies, make it subtract from health and spawn some particles.</comment>
-                <event-block sid="3757760960324017">
-                    <conditions>
-                        <condition id="0" name="On collision with another object" sid="2324439540611691" type="TowerBullet">
-                            <param id="0" name="Object">Enemies</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-12" name="Subtract from" sid="2424479107563435" type="Enemies">
-                            <param id="0" name="Instance variable">Health</param>
-                            <param id="1" name="Value">TowerBullet.Damage</param>
-                        </action>
-                        <action id="-9" name="Destroy" sid="5899583099657957" type="TowerBullet" />
-                        <action id="0" name="Spawn another object" sid="3388602188449933" type="TowerBullet">
-                            <param id="0" name="Object">BulletImpactParticles</param>
-                            <param id="1" name="Layer">&quot;Game&quot;</param>
-                            <param id="2" name="Image point">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="6364883664631782">
-                    <conditions>
-                        <condition id="0" name="On collision with another object" sid="7622045509978856" type="TowerOdinBullet">
-                            <param id="0" name="Object">Enemies</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-12" name="Subtract from" sid="8153350665888441" type="Enemies">
-                            <param id="0" name="Instance variable">Health</param>
-                            <param id="1" name="Value">TowerOdinBullet.Damage</param>
-                        </action>
-                        <action id="-9" name="Destroy" sid="7423431685140989" type="TowerBullet" />
-                        <action id="0" name="Spawn another object" sid="2532264154729911" type="TowerBullet">
-                            <param id="0" name="Object">BulletImpactParticles</param>
-                            <param id="1" name="Layer">&quot;Game&quot;</param>
-                            <param id="2" name="Image point">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Destroy enemies with no health left, throwing in a particles effect.</comment>
-                <event-block sid="7368516189828693">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="3246318281038546" type="Enemies">
-                            <param id="0" name="Instance variable">Health</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Spawn another object" sid="4667924870463321" type="Enemies">
-                            <param id="0" name="Object">EnemyDeadParticles</param>
-                            <param id="1" name="Layer">&quot;Game&quot;</param>
-                            <param id="2" name="Image point">0</param>
-                        </action>
-                        <action id="-9" name="Destroy" sid="8992076207642883" type="Enemies" />
-                        <action id="-12" name="Subtract from" sid="6214782843102849" type="Lair">
-                            <param id="0" name="Instance variable">Health</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>When an enemy reaches the target, destroy it, but also pick a random turret and destroy that.</comment>
-                <event-block sid="2735644090319776">
-                    <conditions>
-                        <condition id="0" name="On collision with another object" sid="3701222411679042" type="Enemies">
-                            <param id="0" name="Object">Nexus</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" sid="3041642669257395" type="Enemies" />
-                    </actions>
-                    <sub-events>
-                        <event-block sid="7249863221950828">
-                            <conditions>
-                                <condition id="-7" name="Compare instance variable" sid="2190367063595382" type="Nexus">
-                                    <param id="0" name="Instance variable">Health</param>
-                                    <param id="1" name="Comparison">4</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-12" name="Subtract from" sid="4535005745480013" type="Nexus">
-                                    <param id="0" name="Instance variable">Health</param>
-                                    <param id="1" name="Value">Enemies.Damage</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-                <event-block sid="6557382573573599">
-                    <conditions>
-                        <condition behavior="Pathfinding" id="1" name="On failed to find path" sid="8021990082027965" type="Enemies" />
-                    </conditions>
-                    <actions />
-                </event-block>
-            </sub-events>
-        </event-group>
         <event-group collapsed="1" description="" sid="152918491606407" title="Turret control">
             <sub-events>
                 <comment>Tell the turrets to target the enemies.</comment>
@@ -418,14 +234,14 @@
                             <param id="0" name="Object">Nexus</param>
                             <param id="1" name="Instance variable">Nexus|Health</param>
                             <param id="2" name="Precision">1</param>
-                            <param id="3" name="Interpolation">0</param>
+                            <param id="3" name="Interpolation">1</param>
                             <param id="4" name="Client value tag">&quot;NexusHealth&quot;</param>
                         </action>
                         <action id="12" name="Sync instance variable" sid="2058124719455571" type="Multiplayer">
                             <param id="0" name="Object">Lair</param>
                             <param id="1" name="Instance variable">Lair|Health</param>
                             <param id="2" name="Precision">1</param>
-                            <param id="3" name="Interpolation">0</param>
+                            <param id="3" name="Interpolation">1</param>
                             <param id="4" name="Client value tag">&quot;LairHealth&quot;</param>
                         </action>
                         <action id="1" name="Connect" sid="329249651283753" type="Multiplayer">
@@ -486,13 +302,15 @@
                                     <param id="0" name="Group name">&quot;Ally Controls&quot;</param>
                                     <param id="1" name="State">1</param>
                                 </action>
+                                <action id="-9" name="Destroy" sid="6782411603753331" type="Nexus" />
+                                <action id="-9" name="Destroy" sid="765744921806271" type="Lair" />
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="9593361770267241" title="Endgame Conditions">
+        <event-group description="" sid="9593361770267241" title="Endgame Conditions">
             <sub-events>
                 <event-block sid="9613413846527504">
                     <conditions>
@@ -516,12 +334,17 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" sid="7385953303600706" type="System">
-                                    <param id="0" name="Variable">LevelEndStatus</param>
-                                    <param id="1" name="Value">0</param>
+                                <action id="9" name="Broadcast message" sid="1480109855925731" type="Multiplayer">
+                                    <param id="0" name="From ID">Multiplayer.FromID</param>
+                                    <param id="1" name="Tag">&quot;Lose&quot;</param>
+                                    <param id="2" name="Message">&quot;Lose&quot;</param>
+                                    <param id="3" name="Mode">1</param>
                                 </action>
-                                <action id="-2" name="Go to layout" sid="1236890526791009" type="System">
-                                    <param id="0" name="Layout">MenuScreen</param>
+                                <action id="-3" name="Create object" sid="3939760149812482" type="System">
+                                    <param id="0" name="Object to create">Lose</param>
+                                    <param id="1" name="Layer">&quot;UI&quot;</param>
+                                    <param id="2" name="X">WindowWidth/2</param>
+                                    <param id="3" name="Y">WindowHeight/2</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -534,12 +357,17 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" sid="5831208170009136" type="System">
-                                    <param id="0" name="Variable">LevelEndStatus</param>
-                                    <param id="1" name="Value">1</param>
+                                <action id="9" name="Broadcast message" sid="6270244921051296" type="Multiplayer">
+                                    <param id="0" name="From ID">Multiplayer.FromID</param>
+                                    <param id="1" name="Tag">&quot;Win&quot;</param>
+                                    <param id="2" name="Message">&quot;Win&quot;</param>
+                                    <param id="3" name="Mode">1</param>
                                 </action>
-                                <action id="-2" name="Go to layout" sid="265221472091926" type="System">
-                                    <param id="0" name="Layout">MenuScreen</param>
+                                <action id="-3" name="Create object" sid="6368679182518111" type="System">
+                                    <param id="0" name="Object to create">Win</param>
+                                    <param id="1" name="Layer">&quot;UI&quot;</param>
+                                    <param id="2" name="X">WindowWidth/2</param>
+                                    <param id="3" name="Y">WindowHeight/2</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -547,7 +375,227 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" inactive="1" sid="9545034405581386" title="Host Controls" />
-        <event-group description="" inactive="1" sid="9988537701931421" title="Ally Controls" />
+        <event-group description="" inactive="1" sid="9545034405581386" title="Host Controls">
+            <sub-events>
+                <event-group description="" sid="7435193017635269" title="Lair Control">
+                    <sub-events>
+                        <event-block sid="3762954102660001">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="8505455941718818" type="System">
+                                    <param id="0" name="Interval (seconds)">EnemySpawnTime</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>Every time an enemy spawn, the spawn interval reduces slightly.  This makes them very gradually come faster!  Make sure it doesn&apos;t go below every 0.5 seconds though.</comment>
+                                <event-block sid="3811749441163612">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="8142076536884116" type="System">
+                                            <param id="0" name="Variable">EnemySpawnTime</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0.5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Subtract from" sid="7782623380689833" type="System">
+                                            <param id="0" name="Variable">EnemySpawnTime</param>
+                                            <param id="1" name="Value">0.01</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="1832309412571278">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="9403852907279757" type="Lair">
+                                            <param id="0" name="Instance variable">Mana</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Value">Enemies.ManaCost</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" sid="6525767773435702" type="Lair">
+                                            <param id="0" name="Object">Enemies</param>
+                                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action behavior="Pathfinding" id="0" name="Find path" sid="6375990928291541" type="Enemies">
+                                            <param id="0" name="X">Nexus.X</param>
+                                            <param id="1" name="Y">Nexus.Y</param>
+                                        </action>
+                                        <action id="-12" name="Subtract from" sid="2121904786830861" type="Lair">
+                                            <param id="0" name="Instance variable">Mana</param>
+                                            <param id="1" name="Value">Enemies.ManaCost</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="1912897602988224" title="Enemy control">
+                    <sub-events>
+                        <event-block sid="7919657993306624">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="2591297902344835" type="System" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Pathfinding" id="4" name="Regenerate obstacle map" sid="9770475659724169" type="Enemies" />
+                                <action behavior="Pathfinding" id="5" name="Add obstacle" sid="2342165491577256" type="Enemies">
+                                    <param id="0" name="Obstacle">Towers</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5807794928573664">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="2177207508915771" type="Enemies" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Pathfinding" id="0" name="Find path" sid="1396814795242966" type="Enemies">
+                                    <param id="0" name="X">Nexus.X</param>
+                                    <param id="1" name="Y">Nexus.Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Once a path has been found, start moving along it.</comment>
+                        <event-block sid="4832788517579924">
+                            <conditions>
+                                <condition behavior="Pathfinding" id="0" name="On path found" sid="4597891180143728" type="Enemies" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Pathfinding" id="1" name="Move along path" sid="274791569236736" type="Enemies" />
+                            </actions>
+                        </event-block>
+                        <comment>When bullets hit enemies, make it subtract from health and spawn some particles.</comment>
+                        <event-block sid="3757760960324017">
+                            <conditions>
+                                <condition id="0" name="On collision with another object" sid="2324439540611691" type="TowerBullet">
+                                    <param id="0" name="Object">Enemies</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Subtract from" sid="2424479107563435" type="Enemies">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Value">TowerBullet.Damage</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="5899583099657957" type="TowerBullet" />
+                                <action id="0" name="Spawn another object" sid="3388602188449933" type="TowerBullet">
+                                    <param id="0" name="Object">BulletImpactParticles</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="Image point">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="6364883664631782">
+                            <conditions>
+                                <condition id="0" name="On collision with another object" sid="7622045509978856" type="TowerOdinBullet">
+                                    <param id="0" name="Object">Enemies</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Subtract from" sid="8153350665888441" type="Enemies">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Value">TowerOdinBullet.Damage</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="7423431685140989" type="TowerBullet" />
+                                <action id="0" name="Spawn another object" sid="2532264154729911" type="TowerBullet">
+                                    <param id="0" name="Object">BulletImpactParticles</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="Image point">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Destroy enemies with no health left, throwing in a particles effect.</comment>
+                        <event-block sid="7368516189828693">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3246318281038546" type="Enemies">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="4667924870463321" type="Enemies">
+                                    <param id="0" name="Object">EnemyDeadParticles</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="8992076207642883" type="Enemies" />
+                                <action id="-12" name="Subtract from" sid="6214782843102849" type="Lair">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>When an enemy reaches the target, destroy it, but also pick a random turret and destroy that.</comment>
+                        <event-block sid="2735644090319776">
+                            <conditions>
+                                <condition id="0" name="On collision with another object" sid="3701222411679042" type="Enemies">
+                                    <param id="0" name="Object">Nexus</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="3041642669257395" type="Enemies" />
+                            </actions>
+                            <sub-events>
+                                <event-block sid="7249863221950828">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="2190367063595382" type="Nexus">
+                                            <param id="0" name="Instance variable">Health</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Subtract from" sid="4535005745480013" type="Nexus">
+                                            <param id="0" name="Instance variable">Health</param>
+                                            <param id="1" name="Value">Enemies.Damage</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="6557382573573599">
+                            <conditions>
+                                <condition behavior="Pathfinding" id="1" name="On failed to find path" sid="8021990082027965" type="Enemies" />
+                            </conditions>
+                            <actions />
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-group description="" inactive="1" sid="9988537701931421" title="Ally Controls">
+            <sub-events>
+                <event-block sid="5463145454801689">
+                    <conditions>
+                        <condition id="15" name="On peer message" sid="6421624617367471" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;Lose&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="5419837117548648" type="System">
+                            <param id="0" name="Object to create">Lose</param>
+                            <param id="1" name="Layer">&quot;UI&quot;</param>
+                            <param id="2" name="X">WindowWidth/2</param>
+                            <param id="3" name="Y">WindowHeight/2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7436449604989093">
+                    <conditions>
+                        <condition id="15" name="On peer message" sid="1743494901886235" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;Win&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="7557235413593201" type="System">
+                            <param id="0" name="Object to create">Win</param>
+                            <param id="1" name="Layer">&quot;UI&quot;</param>
+                            <param id="2" name="X">WindowWidth/2</param>
+                            <param id="3" name="Y">WindowHeight/2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>
