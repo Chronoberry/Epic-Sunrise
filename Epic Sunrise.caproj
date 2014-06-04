@@ -25,7 +25,6 @@
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="DragnDrop" version="1">Drag &amp; Drop</behavior>
-        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="Flash" version="1">Flash</behavior>
         <behavior author="Scirra" id="Pathfinding" version="1">Pathfinding</behavior>
         <behavior author="Scirra" id="Turret" version="1">Turret</behavior>
@@ -381,9 +380,6 @@
             <behaviors>
                 <behavior-type name="DragDrop" sid="7457347025525812">
                     <behavior id="DragnDrop" />
-                </behavior-type>
-                <behavior-type name="Fade" sid="1693343343354974">
-                    <behavior id="Fade" />
                 </behavior-type>
             </behaviors>
         </family>

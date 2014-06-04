@@ -152,6 +152,11 @@
                                 <condition id="1" name="Is overlapping another object" sid="4047660233585028" type="Cards">
                                     <param id="0" name="Object">GridBackground</param>
                                 </condition>
+                                <condition id="-14" name="Compare variable" sid="1857491684488383" type="System">
+                                    <param id="0" name="Variable">Mana</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">Cards.ManaCost</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-9" name="Destroy" sid="4268960084361258" type="Cards" />
