@@ -163,6 +163,9 @@
             <object-type name="TowerOdinCost" sid="2869818828511773">
                 <plugin id="Text" />
             </object-type>
+            <object-type name="TowerInstructions" sid="963895864422463">
+                <plugin id="Text" />
+            </object-type>
         </object-folder>
         <object-folder expanded="1" name="Background">
             <object-type name="GridBackground" sid="9436312214470827">
@@ -297,6 +300,9 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="NexusInstructions" sid="9528895309037319">
+                <plugin id="Text" />
+            </object-type>
         </object-folder>
         <object-type name="Touch" sid="6608947540430408">
             <plugin id="Touch" />
@@ -315,12 +321,6 @@
         </object-type>
         <object-type name="Health" sid="2845874301319546">
             <plugin id="Text" />
-        </object-type>
-        <object-type name="Mana" sid="7316859569609979">
-            <plugin id="Text" />
-            <instance-variables>
-                <instance-variable name="Mana" sid="9138525525606953" type="number" />
-            </instance-variables>
         </object-type>
         <object-type name="WallSelector" sid="164210134766791">
             <plugin id="Sprite" />
@@ -349,6 +349,9 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
+        </object-type>
+        <object-type name="ManaLabel" sid="7316859569609979">
+            <plugin id="Text" />
         </object-type>
     </object-folder>
     <families>

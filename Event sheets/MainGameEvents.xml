@@ -9,7 +9,9 @@
         <variable constant="0" name="LevelEndStatus" sid="1112376278473827" static="0" type="text"></variable>
         <variable comment="The turret the user has currently selected" constant="0" name="TowerSelect" sid="6379256797545093" static="0" type="text">tower1</variable>
         <variable comment="Seconds interval between spawning a new enemy." constant="0" name="EnemySpawnTime" sid="6475113749160177" static="0" type="number">2</variable>
-        <event-group collapsed="1" description="" sid="4910937020671933" title="Global">
+        <variable constant="0" name="NewTowerPosition" sid="7021043817621469" static="0" type="number">0</variable>
+        <variable constant="0" name="Mana" sid="6548538798602154" static="0" type="number">6</variable>
+        <event-group description="" sid="4910937020671933" title="Global">
             <sub-events>
                 <event-block sid="56000430988418">
                     <conditions>
@@ -28,17 +30,27 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-11" name="Add to" sid="5315955766254186" type="Mana">
+                        <action id="-11" name="Add to" sid="7134359098673471" type="Lair">
                             <param id="0" name="Instance variable">Mana</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-11" name="Add to" sid="7134359098673471" type="Lair">
-                            <param id="0" name="Instance variable">Mana</param>
+                        <action id="-10" name="Add to" sid="8600929164771752" type="System">
+                            <param id="0" name="Variable">Mana</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>Set a loop to update our text and check our win/lose conditions</comment>
+                <event-block sid="7655843314942843">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="7159473999810151" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="2091918429010325" type="ManaLabel">
+                            <param id="0" name="Text">&quot;Mana: &quot; &amp; Mana</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group collapsed="1" description="" sid="152918491606407" title="Turret control">
@@ -133,27 +145,36 @@
                     </conditions>
                     <actions />
                     <sub-events>
+                        <variable constant="0" name="NewTowerX" sid="3193504123539436" static="0" type="number">0</variable>
+                        <variable constant="0" name="NewTowerY" sid="8647256693617067" static="0" type="number">0</variable>
                         <event-block sid="5950341546299447">
                             <conditions>
                                 <condition id="1" name="Is overlapping another object" sid="4047660233585028" type="Cards">
                                     <param id="0" name="Object">GridBackground</param>
                                 </condition>
-                                <condition id="-7" name="Compare instance variable" sid="6477478584341059" type="Mana">
-                                    <param id="0" name="Instance variable">Mana</param>
-                                    <param id="1" name="Comparison">5</param>
-                                    <param id="2" name="Value">Cards.ManaCost</param>
-                                </condition>
                             </conditions>
                             <actions>
+                                <action id="-9" name="Destroy" sid="4268960084361258" type="Cards" />
+                                <action id="-9" name="Set value" sid="4091295567211542" type="System">
+                                    <param id="0" name="Variable">NewTowerX</param>
+                                    <param id="1" name="Value">round((Cards.X- 32) / 64) * 64 + 64</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="3518986575162407" type="System">
+                                    <param id="0" name="Variable">NewTowerY</param>
+                                    <param id="1" name="Value">round((Cards.Y- 32) / 64) * 64 + 32</param>
+                                </action>
                                 <action id="2" name="Create instance" sid="6944607571843406" type="Nickname">
                                     <param id="0" name="Nickname">TowerSelect</param>
-                                    <param id="1" name="X">round((Cards.X - 32) / 64) * 64 + 64</param>
-                                    <param id="2" name="Y">round((Cards.Y - 32) / 64) * 64  + 32</param>
+                                    <param id="1" name="X">NewTowerX</param>
+                                    <param id="2" name="Y">NewTowerY</param>
                                     <param id="3" name="Layer">&quot;Game&quot;</param>
                                 </action>
-                                <action behavior="Fade" id="1" name="Start fade" sid="9584355010103752" type="Cards" />
-                                <action id="-12" name="Subtract from" sid="7703688510261204" type="Mana">
-                                    <param id="0" name="Instance variable">Mana</param>
+                                <action id="-9" name="Set value" sid="6213734241126285" type="System">
+                                    <param id="0" name="Variable">NewTowerPosition</param>
+                                    <param id="1" name="Value">NewTowerX * 10000 + NewTowerY</param>
+                                </action>
+                                <action id="-11" name="Subtract from" sid="2804136569566848" type="System">
+                                    <param id="0" name="Variable">Mana</param>
                                     <param id="1" name="Value">Cards.ManaCost</param>
                                 </action>
                             </actions>
@@ -170,10 +191,10 @@
                     <sub-events>
                         <event-block sid="3202780106451121">
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" sid="8299067991750784" type="Mana">
-                                    <param id="0" name="Instance variable">Mana</param>
+                                <condition id="-14" name="Compare variable" sid="3985992315355323" type="System">
+                                    <param id="0" name="Variable">Mana</param>
                                     <param id="1" name="Comparison">5</param>
-                                    <param id="2" name="Value">3</param>
+                                    <param id="2" name="Value">2</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -183,13 +204,26 @@
                                     <param id="2" name="X">64 * gHandSize * 2</param>
                                     <param id="3" name="Y">512</param>
                                 </action>
-                                <action id="-12" name="Subtract from" sid="5300004871284363" type="Mana">
-                                    <param id="0" name="Instance variable">Mana</param>
+                                <action id="-11" name="Subtract from" sid="7425260616417892" type="System">
+                                    <param id="0" name="Variable">Mana</param>
                                     <param id="1" name="Value">2</param>
                                 </action>
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <event-block sid="5637104453211154">
+                    <conditions>
+                        <condition id="15" name="On peer message" sid="9711454229475374" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;NewClientTower&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="7303327845308804" type="System">
+                            <param id="0" name="Variable">NewTowerPosition</param>
+                            <param id="1" name="Value">Multiplayer.Message</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
@@ -247,6 +281,11 @@
                         </action>
                         <action id="1" name="Connect" sid="329249651283753" type="Multiplayer">
                             <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
+                        </action>
+                        <action id="15" name="Add client input value" sid="7537304039030379" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;NewTowerPosition&quot;</param>
+                            <param id="1" name="Precision">1</param>
+                            <param id="2" name="Interpolation">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -399,9 +438,6 @@
                         <action id="0" name="Set text" sid="7326356552826192" type="Health">
                             <param id="0" name="Text">&quot;Health : &quot; &amp; Nexus.Health</param>
                         </action>
-                        <action id="0" name="Set text" sid="8477721313089929" type="Mana">
-                            <param id="0" name="Text">&quot;Mana: &quot; &amp; Mana.Mana</param>
-                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="9048292853746229">
@@ -481,7 +517,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="1912897602988224" title="Enemy control">
+                <event-group collapsed="1" description="" sid="1912897602988224" title="Enemy control">
                     <sub-events>
                         <event-block sid="7919657993306624">
                             <conditions>
@@ -675,6 +711,17 @@
                         </action>
                         <action id="-26" name="Move to layer" sid="3899978223515076" type="Towers">
                             <param id="0" name="Layer">&quot;Game&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8049308297104769">
+                    <conditions>
+                        <condition id="17" name="On client update" sid="2943159540339916" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Set client state" sid="4300202744542045" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;NewTowerPosition&quot;</param>
+                            <param id="1" name="Value">NewTowerPosition</param>
                         </action>
                     </actions>
                 </event-block>
