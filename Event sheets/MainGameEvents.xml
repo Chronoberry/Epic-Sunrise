@@ -343,7 +343,7 @@
                             <param id="0" name="Variable">LevelEndStatus</param>
                             <param id="1" name="Value">&quot;Defeat&quot;</param>
                         </action>
-                        <action id="-9" name="Destroy" sid="3492914726687208" type="Nexus" />
+                        <action disabled="1" id="-9" name="Destroy" sid="3492914726687208" type="Nexus" />
                         <action id="-3" name="Create object" sid="7009886749067543" type="System">
                             <param id="0" name="Object to create">PlayAgain</param>
                             <param id="1" name="Layer">&quot;UI&quot;</param>
@@ -382,7 +382,7 @@
                             <param id="0" name="Variable">LevelEndStatus</param>
                             <param id="1" name="Value">&quot;Victory&quot;</param>
                         </action>
-                        <action id="-9" name="Destroy" sid="8328415492531915" type="Lair" />
+                        <action disabled="1" id="-9" name="Destroy" sid="8328415492531915" type="Lair" />
                         <action id="-3" name="Create object" sid="3151352662591252" type="System">
                             <param id="0" name="Object to create">PlayAgain</param>
                             <param id="1" name="Layer">&quot;UI&quot;</param>
@@ -415,12 +415,9 @@
                             <param id="2" name="Message">&quot;Restart&quot;</param>
                             <param id="3" name="Mode">0</param>
                         </action>
-                        <action id="-9" name="Set value" sid="3159673348228025" type="System">
-                            <param id="0" name="Variable">LevelEndStatus</param>
-                            <param id="1" name="Value">&quot;&quot;</param>
-                        </action>
-                        <action id="-2" name="Go to layout" sid="1689889981834645" type="System">
-                            <param id="0" name="Layout">MainGame</param>
+                        <action id="-12" name="Set group active" sid="1962466115885646" type="System">
+                            <param id="0" name="Group name">&quot;Cleanup&quot;</param>
+                            <param id="1" name="State">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -657,8 +654,9 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-2" name="Go to layout" sid="711545398857223" type="System">
-                            <param id="0" name="Layout">MainGame</param>
+                        <action id="-12" name="Set group active" sid="5003694217076974" type="System">
+                            <param id="0" name="Group name">&quot;Cleanup&quot;</param>
+                            <param id="1" name="State">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -675,6 +673,58 @@
                         </action>
                         <action id="-26" name="Move to layer" sid="3899978223515076" type="Towers">
                             <param id="0" name="Layer">&quot;Game&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="Cleans up the level so that we can play again" inactive="1" sid="3865494496805493" title="Cleanup">
+            <sub-events>
+                <event-block any="1" sid="389698802277335">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="8941894356233187" type="System">
+                            <param id="0" name="Variable">LevelEndStatus</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Defeat&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="3263434527318" type="System">
+                            <param id="0" name="Variable">LevelEndStatus</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Victory&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="9349682810122456" type="Enemies" />
+                        <action id="-9" name="Destroy" sid="2553407144676183" type="Towers" />
+                        <action id="-9" name="Destroy" sid="7215849257047897" type="Cards" />
+                        <action id="-10" name="Set value" sid="6241834603944487" type="Nexus">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">10</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1174317431527674" type="Lair">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">10</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7138135480840801" type="Mana">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="3930715960021982" type="PlayAgain" />
+                        <action id="-9" name="Destroy" sid="6792911448563328" type="Victory" />
+                        <action id="-9" name="Destroy" sid="6383854048852477" type="Defeat" />
+                        <action id="-9" name="Set value" sid="6537450123689696" type="System">
+                            <param id="0" name="Variable">LevelEndStatus</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="7719423799307811" type="System">
+                            <param id="0" name="Object to create">Cards</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="X">100</param>
+                            <param id="3" name="Y">500</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="4776677835526047" type="System">
+                            <param id="0" name="Group name">&quot;Cleanup&quot;</param>
+                            <param id="1" name="State">0</param>
                         </action>
                     </actions>
                 </event-block>
