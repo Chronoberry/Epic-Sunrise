@@ -164,7 +164,7 @@
                                 <target-mode>First in range</target-mode>
                                 <predictive-aim>No</predictive-aim>
                                 <projectile-speed>500</projectile-speed>
-                                <initial-state>Enabled</initial-state>
+                                <initial-state>Disabled</initial-state>
                                 <use-collision-cells>Yes</use-collision-cells>
                             </properties>
                         </behavior-instance>
@@ -206,7 +206,7 @@
                                 <target-mode>First in range</target-mode>
                                 <predictive-aim>No</predictive-aim>
                                 <projectile-speed>500</projectile-speed>
-                                <initial-state>Enabled</initial-state>
+                                <initial-state>Disabled</initial-state>
                                 <use-collision-cells>Yes</use-collision-cells>
                             </properties>
                         </behavior-instance>
@@ -249,7 +249,7 @@
                                 <cell-size>30</cell-size>
                                 <cell-border>-1</cell-border>
                                 <obstacles>Solids</obstacles>
-                                <max-speed>200</max-speed>
+                                <max-speed>50</max-speed>
                                 <acceleration>1000</acceleration>
                                 <deceleration>2000</deceleration>
                                 <rotate-speed>135</rotate-speed>
@@ -332,7 +332,7 @@
                                 <cell-size>30</cell-size>
                                 <cell-border>-1</cell-border>
                                 <obstacles>Solids</obstacles>
-                                <max-speed>200</max-speed>
+                                <max-speed>50</max-speed>
                                 <acceleration>1000</acceleration>
                                 <deceleration>2000</deceleration>
                                 <rotate-speed>135</rotate-speed>

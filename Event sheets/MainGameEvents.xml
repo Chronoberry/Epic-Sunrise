@@ -19,6 +19,20 @@
                         <action id="0" name="Set text" sid="932629099172965" type="Health">
                             <param id="0" name="Text">&quot;Health: &quot;  &amp; Nexus.Health</param>
                         </action>
+                        <action behavior="Turret" id="1" name="Add object to target" sid="5808104761799214" type="Towers">
+                            <param id="0" name="Target">Enemies</param>
+                        </action>
+                        <action id="1" name="Assign nickname" sid="8094363890223938" type="Nickname">
+                            <param id="0" name="Nickname">&quot;tower1&quot;</param>
+                            <param id="1" name="Object">Tower1</param>
+                        </action>
+                        <action id="1" name="Assign nickname" sid="3837628833700287" type="Nickname">
+                            <param id="0" name="Nickname">&quot;towerOdin&quot;</param>
+                            <param id="1" name="Object">TowerOdin</param>
+                        </action>
+                        <action behavior="Turret" id="5" name="Set enabled" sid="7810383722120836" type="Towers">
+                            <param id="0" name="State">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block disabled="1" sid="7677858876070592">
@@ -62,31 +76,25 @@
                             <param id="0" name="Group name">&quot;Lair Control&quot;</param>
                             <param id="1" name="State">1</param>
                         </action>
+                        <action id="-12" name="Set group active" sid="7401988598725756" type="System">
+                            <param id="0" name="Group name">&quot;Tower Control&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="3841247167655688" type="System">
+                            <param id="0" name="Group name">&quot;Enemy Control&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
+                        <action behavior="Turret" id="5" name="Set enabled" sid="2121563128674397" type="Towers">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="Pathfinding" id="4" name="Regenerate obstacle map" sid="5894670365154089" type="Enemies" />
+                        <action behavior="Pathfinding" id="1" name="Move along path" sid="6091084144160375" type="Enemies" />
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="152918491606407" title="Turret control">
+        <event-group description="" inactive="1" sid="152918491606407" title="Tower Control">
             <sub-events>
-                <comment>Tell the turrets to target the enemies.</comment>
-                <event-block sid="2920361286650912">
-                    <conditions>
-                        <condition id="-2" name="On start of layout" sid="8213731277183264" type="System" />
-                    </conditions>
-                    <actions>
-                        <action behavior="Turret" id="1" name="Add object to target" sid="6826290388545864" type="Towers">
-                            <param id="0" name="Target">Enemies</param>
-                        </action>
-                        <action id="1" name="Assign nickname" sid="7873777068798684" type="Nickname">
-                            <param id="0" name="Nickname">&quot;tower1&quot;</param>
-                            <param id="1" name="Object">Tower1</param>
-                        </action>
-                        <action id="1" name="Assign nickname" sid="854588030155696" type="Nickname">
-                            <param id="0" name="Nickname">&quot;towerOdin&quot;</param>
-                            <param id="1" name="Object">TowerOdin</param>
-                        </action>
-                    </actions>
-                </event-block>
                 <comment>When shooting, spawn a bullet.</comment>
                 <event-block sid="6578484286418145">
                     <conditions>
@@ -139,7 +147,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="This is how you play the tower cards" sid="5672389924595487" title="Card Deployment">
+        <event-group description="This is how you play the tower cards" sid="5672389924595487" title="Card Deployment">
             <sub-events>
                 <event-block sid="7272489924294161">
                     <conditions>
@@ -218,7 +226,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="1895770900113535" title="Multiplayer Setup">
+        <event-group collapsed="1" description="" sid="1895770900113535" title="Multiplayer Setup">
             <sub-events>
                 <event-block sid="5047235259880581">
                     <conditions>
@@ -336,7 +344,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="9593361770267241" title="Endgame Conditions">
+        <event-group collapsed="1" description="" sid="9593361770267241" title="Endgame Conditions">
             <sub-events>
                 <event-block sid="5389525662328113">
                     <conditions>
@@ -515,6 +523,10 @@
                                             <param id="0" name="Group name">&quot;Lair Control&quot;</param>
                                             <param id="1" name="State">0</param>
                                         </action>
+                                        <action id="-12" name="Set group active" sid="2834428872928982" type="System">
+                                            <param id="0" name="Group name">&quot;Enemy Control&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
                                         <action id="3" name="Set enabled" sid="790312482233815" type="TurnButton">
                                             <param id="0" name="Mode">1</param>
                                         </action>
@@ -522,17 +534,24 @@
                                             <param id="0" name="Instance variable">Mana</param>
                                             <param id="1" name="Value">3</param>
                                         </action>
+                                        <action id="0" name="Set text" sid="3340296975521712" type="TurnDisplay">
+                                            <param id="0" name="Text">&quot;Your Turn&quot;</param>
+                                        </action>
+                                        <action behavior="Turret" id="5" name="Set enabled" sid="30709463309881" type="Towers">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                        <action behavior="Pathfinding" id="2" name="Stop" sid="3713708175276693" type="Enemies" />
                                     </actions>
                                 </event-block>
                             </sub-events>
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="1912897602988224" title="Enemy control">
+                <event-group description="" inactive="1" sid="1912897602988224" title="Enemy Control">
                     <sub-events>
-                        <event-block disabled="1" sid="7919657993306624">
+                        <event-block sid="7919657993306624">
                             <conditions>
-                                <condition disabled="1" id="-1" name="Every tick" sid="2591297902344835" type="System" />
+                                <condition id="-1" name="Every tick" sid="2591297902344835" type="System" />
                             </conditions>
                             <actions>
                                 <action behavior="Pathfinding" id="4" name="Regenerate obstacle map" sid="9770475659724169" type="Enemies" />
@@ -553,7 +572,7 @@
                             </actions>
                         </event-block>
                         <comment>Once a path has been found, start moving along it.</comment>
-                        <event-block disabled="1" sid="4832788517579924">
+                        <event-block sid="4832788517579924">
                             <conditions>
                                 <condition behavior="Pathfinding" id="0" name="On path found" sid="4597891180143728" type="Enemies" />
                             </conditions>
@@ -665,7 +684,7 @@
                 </event-group>
             </sub-events>
         </event-group>
-        <event-group description="" inactive="1" sid="9988537701931421" title="Ally Controls">
+        <event-group collapsed="1" description="" inactive="1" sid="9988537701931421" title="Ally Controls">
             <sub-events>
                 <event-block sid="5463145454801689">
                     <conditions>
