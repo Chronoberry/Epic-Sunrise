@@ -9,7 +9,7 @@
         <variable constant="0" name="LevelEndStatus" sid="1112376278473827" static="0" type="text"></variable>
         <variable comment="The turret the user has currently selected" constant="0" name="TowerSelect" sid="6379256797545093" static="0" type="text">tower1</variable>
         <variable comment="Seconds interval between spawning a new enemy." constant="0" name="EnemySpawnTime" sid="6475113749160177" static="0" type="number">2</variable>
-        <event-group collapsed="1" description="" sid="4910937020671933" title="Global">
+        <event-group description="" sid="4910937020671933" title="Global">
             <sub-events>
                 <event-block sid="56000430988418">
                     <conditions>
@@ -21,7 +21,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="7677858876070592">
+                <event-block disabled="1" sid="7677858876070592">
                     <conditions>
                         <condition id="-6" name="Every X seconds" sid="5265586642070748" type="System">
                             <param id="0" name="Interval (seconds)">2.0</param>
@@ -41,7 +41,32 @@
                 <comment>Set a loop to update our text and check our win/lose conditions</comment>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="152918491606407" title="Turret control">
+        <event-group description="" sid="6849072976989572" title="Turn">
+            <sub-events>
+                <event-block sid="376881151367262">
+                    <conditions>
+                        <condition id="0" name="On clicked" sid="3736210294544786" type="TurnButton" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="2725500553191523" type="TurnDisplay">
+                            <param id="0" name="Text">&quot;Enemy Turn&quot;</param>
+                        </action>
+                        <action id="3" name="Set enabled" sid="9983768764963037" type="TurnButton">
+                            <param id="0" name="Mode">0</param>
+                        </action>
+                        <action id="-11" name="Add to" sid="4735429104570286" type="Lair">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Value">3</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="6536946262107526" type="System">
+                            <param id="0" name="Group name">&quot;Lair Control&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="152918491606407" title="Turret control">
             <sub-events>
                 <comment>Tell the turrets to target the enemies.</comment>
                 <event-block sid="2920361286650912">
@@ -138,7 +163,7 @@
                                 <condition id="1" name="Is overlapping another object" sid="4047660233585028" type="Cards">
                                     <param id="0" name="Object">GridBackground</param>
                                 </condition>
-                                <condition id="-7" name="Compare instance variable" sid="6477478584341059" type="Mana">
+                                <condition id="-7" name="Compare instance variable" sid="1988297978467011" type="Nexus">
                                     <param id="0" name="Instance variable">Mana</param>
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Value">Cards.ManaCost</param>
@@ -152,7 +177,7 @@
                                     <param id="3" name="Layer">&quot;Game&quot;</param>
                                 </action>
                                 <action behavior="Fade" id="1" name="Start fade" sid="9584355010103752" type="Cards" />
-                                <action id="-12" name="Subtract from" sid="7703688510261204" type="Mana">
+                                <action id="-12" name="Subtract from" sid="4790085350498524" type="Nexus">
                                     <param id="0" name="Instance variable">Mana</param>
                                     <param id="1" name="Value">Cards.ManaCost</param>
                                 </action>
@@ -170,7 +195,7 @@
                     <sub-events>
                         <event-block sid="3202780106451121">
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" sid="8299067991750784" type="Mana">
+                                <condition id="-7" name="Compare instance variable" sid="4879496664641104" type="Nexus">
                                     <param id="0" name="Instance variable">Mana</param>
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Value">3</param>
@@ -183,7 +208,7 @@
                                     <param id="2" name="X">64 * gHandSize * 2</param>
                                     <param id="3" name="Y">512</param>
                                 </action>
-                                <action id="-12" name="Subtract from" sid="5300004871284363" type="Mana">
+                                <action id="-12" name="Subtract from" sid="6280900651726146" type="Nexus">
                                     <param id="0" name="Instance variable">Mana</param>
                                     <param id="1" name="Value">3</param>
                                 </action>
@@ -400,7 +425,7 @@
                             <param id="0" name="Text">&quot;Health : &quot; &amp; Nexus.Health</param>
                         </action>
                         <action id="0" name="Set text" sid="8477721313089929" type="Mana">
-                            <param id="0" name="Text">&quot;Mana: &quot; &amp; Mana.Mana</param>
+                            <param id="0" name="Text">&quot;Mana: &quot; &amp; Nexus.Mana</param>
                         </action>
                     </actions>
                 </event-block>
@@ -428,9 +453,9 @@
         </event-group>
         <event-group description="" inactive="1" sid="9545034405581386" title="Host Controls">
             <sub-events>
-                <event-group description="" sid="7435193017635269" title="Lair Control">
+                <event-group description="" inactive="1" sid="7435193017635269" title="Lair Control">
                     <sub-events>
-                        <event-block collapsed="1" sid="3762954102660001">
+                        <event-block sid="3762954102660001">
                             <conditions>
                                 <condition id="-6" name="Every X seconds" sid="8505455941718818" type="System">
                                     <param id="0" name="Interval (seconds)">EnemySpawnTime</param>
@@ -461,7 +486,7 @@
                                             <param id="1" name="Comparison">5</param>
                                             <param id="2" name="Value">Enemies.ManaCost</param>
                                         </condition>
-                                        <condition id="1" inverted="1" name="Is overlapping another object" sid="1798210250618697" type="Spawnbox">
+                                        <condition disabled="1" id="1" inverted="1" name="Is overlapping another object" sid="1798210250618697" type="Spawnbox">
                                             <param id="0" name="Object">Enemies</param>
                                         </condition>
                                     </conditions>
@@ -477,15 +502,37 @@
                                         </action>
                                     </actions>
                                 </event-block>
+                                <event-block sid="9890357821315152">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="2202441362346379" type="Lair">
+                                            <param id="0" name="Instance variable">Mana</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Set group active" sid="5450063411490107" type="System">
+                                            <param id="0" name="Group name">&quot;Lair Control&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
+                                        <action id="3" name="Set enabled" sid="790312482233815" type="TurnButton">
+                                            <param id="0" name="Mode">1</param>
+                                        </action>
+                                        <action id="-11" name="Add to" sid="6037770680057766" type="Nexus">
+                                            <param id="0" name="Instance variable">Mana</param>
+                                            <param id="1" name="Value">3</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                             </sub-events>
                         </event-block>
                     </sub-events>
                 </event-group>
                 <event-group description="" sid="1912897602988224" title="Enemy control">
                     <sub-events>
-                        <event-block sid="7919657993306624">
+                        <event-block disabled="1" sid="7919657993306624">
                             <conditions>
-                                <condition id="-1" name="Every tick" sid="2591297902344835" type="System" />
+                                <condition disabled="1" id="-1" name="Every tick" sid="2591297902344835" type="System" />
                             </conditions>
                             <actions>
                                 <action behavior="Pathfinding" id="4" name="Regenerate obstacle map" sid="9770475659724169" type="Enemies" />
@@ -506,7 +553,7 @@
                             </actions>
                         </event-block>
                         <comment>Once a path has been found, start moving along it.</comment>
-                        <event-block sid="4832788517579924">
+                        <event-block disabled="1" sid="4832788517579924">
                             <conditions>
                                 <condition behavior="Pathfinding" id="0" name="On path found" sid="4597891180143728" type="Enemies" />
                             </conditions>
