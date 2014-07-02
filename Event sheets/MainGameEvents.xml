@@ -93,65 +93,6 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block sid="9048292853746229">
-            <conditions>
-                <condition id="0" name="On clicked" sid="158288974913509" type="PlayAgain" />
-            </conditions>
-            <actions>
-                <action id="9" name="Broadcast message" sid="1625471204192478" type="Multiplayer">
-                    <param id="0" name="From ID">Multiplayer.FromID</param>
-                    <param id="1" name="Tag">&quot;Restart&quot;</param>
-                    <param id="2" name="Message">&quot;Restart&quot;</param>
-                    <param id="3" name="Mode">0</param>
-                </action>
-                <action id="-9" name="Set value" sid="3159673348228025" type="System">
-                    <param id="0" name="Variable">LevelEndStatus</param>
-                    <param id="1" name="Value">&quot;&quot;</param>
-                </action>
-                <action disabled="1" id="-2" name="Go to layout" sid="1689889981834645" type="System">
-                    <param id="0" name="Layout">MainGame</param>
-                </action>
-                <action id="-9" name="Destroy" sid="3054249919563554" type="Enemies" />
-                <action id="-9" name="Destroy" sid="5067678351854172" type="Cards" />
-                <action id="-9" name="Destroy" sid="2059147443586546" type="Towers" />
-                <action id="-9" name="Destroy" sid="1184790949030091" type="Victory" />
-                <action id="-9" name="Destroy" sid="6482416196268744" type="Defeat" />
-                <action id="-10" name="Set value" sid="8687367827901932" type="Lair">
-                    <param id="0" name="Instance variable">Health</param>
-                    <param id="1" name="Value">10</param>
-                </action>
-                <action id="-10" name="Set value" sid="994827663082842" type="Lair">
-                    <param id="0" name="Instance variable">Mana</param>
-                    <param id="1" name="Value">10</param>
-                </action>
-                <action id="-10" name="Set value" sid="3866254863213008" type="Nexus">
-                    <param id="0" name="Instance variable">Health</param>
-                    <param id="1" name="Value">10</param>
-                </action>
-                <action id="-10" name="Set value" sid="7657580247171106" type="Nexus">
-                    <param id="0" name="Instance variable">Mana</param>
-                    <param id="1" name="Value">5</param>
-                </action>
-                <action id="-3" name="Create object" sid="9522846957973497" type="System">
-                    <param id="0" name="Object to create">Cards</param>
-                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                    <param id="2" name="X">64 * gHandSize * 2</param>
-                    <param id="3" name="Y">512</param>
-                </action>
-                <action id="-3" name="Create object" sid="1761160209951171" type="System">
-                    <param id="0" name="Object to create">Cards</param>
-                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                    <param id="2" name="X">64 * gHandSize * 2</param>
-                    <param id="3" name="Y">512</param>
-                </action>
-                <action id="-3" name="Create object" sid="7585769176127432" type="System">
-                    <param id="0" name="Object to create">Cards</param>
-                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                    <param id="2" name="X">64 * gHandSize * 2</param>
-                    <param id="3" name="Y">512</param>
-                </action>
-            </actions>
-        </event-block>
         <event-group description="" inactive="1" sid="152918491606407" title="Tower Control">
             <sub-events>
                 <comment>When shooting, spawn a bullet.</comment>
@@ -273,7 +214,7 @@
                                     <param id="0" name="Object to create">Cards</param>
                                     <param id="1" name="Layer">&quot;Game&quot;</param>
                                     <param id="2" name="X">64 * gHandSize * 2</param>
-                                    <param id="3" name="Y">512</param>
+                                    <param id="3" name="Y">256</param>
                                 </action>
                                 <action id="-12" name="Subtract from" sid="6280900651726146" type="Nexus">
                                     <param id="0" name="Instance variable">Mana</param>
@@ -282,219 +223,6 @@
                             </actions>
                         </event-block>
                     </sub-events>
-                </event-block>
-            </sub-events>
-        </event-group>
-        <event-group collapsed="1" description="" sid="1895770900113535" title="Multiplayer Setup">
-            <sub-events>
-                <event-block sid="5047235259880581">
-                    <conditions>
-                        <condition id="-2" name="On start of layout" sid="9043125860805483" type="System" />
-                        <condition id="7" inverted="1" name="Is connected" sid="6865487705433473" type="Multiplayer" />
-                    </conditions>
-                    <actions>
-                        <action id="11" name="Sync object" sid="593622381784258" type="Multiplayer">
-                            <param id="0" name="Object">Towers</param>
-                            <param id="1" name="Data">3</param>
-                            <param id="2" name="Precision">1</param>
-                            <param id="3" name="Bandwidth">1</param>
-                        </action>
-                        <action id="11" name="Sync object" sid="6615008274162492" type="Multiplayer">
-                            <param id="0" name="Object">Enemies</param>
-                            <param id="1" name="Data">3</param>
-                            <param id="2" name="Precision">1</param>
-                            <param id="3" name="Bandwidth">1</param>
-                        </action>
-                        <action id="11" name="Sync object" sid="8892995317574027" type="Multiplayer">
-                            <param id="0" name="Object">Cards</param>
-                            <param id="1" name="Data">1</param>
-                            <param id="2" name="Precision">1</param>
-                            <param id="3" name="Bandwidth">1</param>
-                        </action>
-                        <action id="11" name="Sync object" sid="7016252399705048" type="Multiplayer">
-                            <param id="0" name="Object">Nexus</param>
-                            <param id="1" name="Data">1</param>
-                            <param id="2" name="Precision">1</param>
-                            <param id="3" name="Bandwidth">2</param>
-                        </action>
-                        <action id="11" name="Sync object" sid="8443637483128335" type="Multiplayer">
-                            <param id="0" name="Object">Lair</param>
-                            <param id="1" name="Data">1</param>
-                            <param id="2" name="Precision">1</param>
-                            <param id="3" name="Bandwidth">2</param>
-                        </action>
-                        <action id="12" name="Sync instance variable" sid="9073773907035879" type="Multiplayer">
-                            <param id="0" name="Object">Nexus</param>
-                            <param id="1" name="Instance variable">Nexus|Health</param>
-                            <param id="2" name="Precision">1</param>
-                            <param id="3" name="Interpolation">1</param>
-                            <param id="4" name="Client value tag">&quot;NexusHealth&quot;</param>
-                        </action>
-                        <action id="12" name="Sync instance variable" sid="2058124719455571" type="Multiplayer">
-                            <param id="0" name="Object">Lair</param>
-                            <param id="1" name="Instance variable">Lair|Health</param>
-                            <param id="2" name="Precision">1</param>
-                            <param id="3" name="Interpolation">1</param>
-                            <param id="4" name="Client value tag">&quot;LairHealth&quot;</param>
-                        </action>
-                        <action id="1" name="Connect" sid="329249651283753" type="Multiplayer">
-                            <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="6179914586450711">
-                    <conditions>
-                        <condition id="2" name="On connected" sid="7058802245530242" type="Multiplayer" />
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Log in" sid="2667818350247315" type="Multiplayer">
-                            <param id="0" name="Alias">Username</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="6912623730915416">
-                    <conditions>
-                        <condition id="4" name="On logged in" sid="7770005590542793" type="Multiplayer" />
-                    </conditions>
-                    <actions>
-                        <action id="5" name="Join room" sid="2757190371166678" type="Multiplayer">
-                            <param id="0" name="Game">GAME_NAME</param>
-                            <param id="1" name="Instance">INSTANCE_NAME</param>
-                            <param id="2" name="Room">ROOM_NAME</param>
-                            <param id="3" name="Max peers">10</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="594625024564966">
-                    <conditions>
-                        <condition id="5" name="On joined room" sid="1945299947151444" type="Multiplayer" />
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="7683276524760584">
-                            <conditions>
-                                <condition id="10" name="Is host" sid="3725165218094677" type="Multiplayer" />
-                            </conditions>
-                            <actions>
-                                <action id="-12" name="Set group active" sid="9055902872331318" type="System">
-                                    <param id="0" name="Group name">&quot;Host Controls&quot;</param>
-                                    <param id="1" name="State">1</param>
-                                </action>
-                                <action id="13" name="Associate object with peer" sid="6725909621047672" type="Multiplayer">
-                                    <param id="0" name="Object">Cards</param>
-                                    <param id="1" name="Peer ID">Multiplayer.MyID</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="967302100568207">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="4759688087644813" type="System" />
-                            </conditions>
-                            <actions>
-                                <action id="-12" name="Set group active" sid="9027525700515567" type="System">
-                                    <param id="0" name="Group name">&quot;Ally Controls&quot;</param>
-                                    <param id="1" name="State">1</param>
-                                </action>
-                                <action id="-9" name="Destroy" sid="6782411603753331" type="Nexus" />
-                                <action id="-9" name="Destroy" sid="765744921806271" type="Lair" />
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-            </sub-events>
-        </event-group>
-        <event-group collapsed="1" description="" sid="9593361770267241" title="Endgame Conditions">
-            <sub-events>
-                <event-block sid="5389525662328113">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="9319683834519676" type="Nexus">
-                            <param id="0" name="Instance variable">Health</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                        <condition id="-14" name="Compare variable" sid="8321343218754318" type="System">
-                            <param id="0" name="Variable">LevelEndStatus</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="9" name="Broadcast message" sid="1480109855925731" type="Multiplayer">
-                            <param id="0" name="From ID">Multiplayer.FromID</param>
-                            <param id="1" name="Tag">&quot;Defeat&quot;</param>
-                            <param id="2" name="Message">&quot;Defeat&quot;</param>
-                            <param id="3" name="Mode">1</param>
-                        </action>
-                        <action id="-3" name="Create object" sid="3939760149812482" type="System">
-                            <param id="0" name="Object to create">Defeat</param>
-                            <param id="1" name="Layer">&quot;UI&quot;</param>
-                            <param id="2" name="X">LayoutWidth/2</param>
-                            <param id="3" name="Y">LayoutHeight/2</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="4269765224593753" type="System">
-                            <param id="0" name="Variable">LevelEndStatus</param>
-                            <param id="1" name="Value">&quot;Defeat&quot;</param>
-                        </action>
-                        <action id="-9" name="Destroy" sid="3492914726687208" type="Nexus" />
-                        <action id="-3" name="Create object" sid="7009886749067543" type="System">
-                            <param id="0" name="Object to create">PlayAgain</param>
-                            <param id="1" name="Layer">&quot;UI&quot;</param>
-                            <param id="2" name="X">LayoutWidth/2-PlayAgain.Width/2</param>
-                            <param id="3" name="Y">LayoutHeight/2-PlayAgain.Height/2+150</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="2114152025189955">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="9500961419893854" type="Lair">
-                            <param id="0" name="Instance variable">Health</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                        <condition id="-14" name="Compare variable" sid="8715693755599468" type="System">
-                            <param id="0" name="Variable">LevelEndStatus</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="9" name="Broadcast message" sid="6270244921051296" type="Multiplayer">
-                            <param id="0" name="From ID">Multiplayer.FromID</param>
-                            <param id="1" name="Tag">&quot;Victory&quot;</param>
-                            <param id="2" name="Message">&quot;Victory&quot;</param>
-                            <param id="3" name="Mode">1</param>
-                        </action>
-                        <action id="-3" name="Create object" sid="9164960995104554" type="System">
-                            <param id="0" name="Object to create">Victory</param>
-                            <param id="1" name="Layer">&quot;UI&quot;</param>
-                            <param id="2" name="X">LayoutWidth/2</param>
-                            <param id="3" name="Y">LayoutHeight/2</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="8271567269695418" type="System">
-                            <param id="0" name="Variable">LevelEndStatus</param>
-                            <param id="1" name="Value">&quot;Victory&quot;</param>
-                        </action>
-                        <action id="-9" name="Destroy" sid="8328415492531915" type="Lair" />
-                        <action id="-3" name="Create object" sid="3151352662591252" type="System">
-                            <param id="0" name="Object to create">PlayAgain</param>
-                            <param id="1" name="Layer">&quot;UI&quot;</param>
-                            <param id="2" name="X">LayoutWidth/2-PlayAgain.Width/2</param>
-                            <param id="3" name="Y">LayoutHeight/2-PlayAgain.Height/2+150</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="9613413846527504">
-                    <conditions>
-                        <condition id="-1" name="Every tick" sid="6102989464673986" type="System" />
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set text" sid="7326356552826192" type="Health">
-                            <param id="0" name="Text">&quot;Health : &quot; &amp; Nexus.Health</param>
-                        </action>
-                        <action id="0" name="Set text" sid="8477721313089929" type="Mana">
-                            <param id="0" name="Text">&quot;Mana: &quot; &amp; Nexus.Mana</param>
-                        </action>
-                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
@@ -678,6 +406,9 @@
                                     <param id="0" name="Instance variable">Health</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="3" name="Set progress" sid="9190703007860671" type="NexusHealthBar">
+                                    <param id="0" name="Value">Lair.Health</param>
+                                </action>
                             </actions>
                         </event-block>
                         <comment>When an enemy reaches the target, destroy it</comment>
@@ -704,6 +435,9 @@
                                             <param id="0" name="Instance variable">Health</param>
                                             <param id="1" name="Value">Enemies.Damage</param>
                                         </action>
+                                        <action id="3" name="Set progress" sid="4896963435943473" type="NexusHealthBar">
+                                            <param id="0" name="Value">Nexus.Health</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
@@ -721,6 +455,239 @@
                         </event-block>
                     </sub-events>
                 </event-group>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" sid="9593361770267241" title="Endgame Conditions">
+            <sub-events>
+                <event-block sid="5389525662328113">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="9319683834519676" type="Nexus">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="8321343218754318" type="System">
+                            <param id="0" name="Variable">LevelEndStatus</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="9" name="Broadcast message" sid="1480109855925731" type="Multiplayer">
+                            <param id="0" name="From ID">Multiplayer.FromID</param>
+                            <param id="1" name="Tag">&quot;Defeat&quot;</param>
+                            <param id="2" name="Message">&quot;Defeat&quot;</param>
+                            <param id="3" name="Mode">1</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="3939760149812482" type="System">
+                            <param id="0" name="Object to create">Defeat</param>
+                            <param id="1" name="Layer">&quot;UI&quot;</param>
+                            <param id="2" name="X">LayoutWidth/2</param>
+                            <param id="3" name="Y">LayoutHeight/2</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4269765224593753" type="System">
+                            <param id="0" name="Variable">LevelEndStatus</param>
+                            <param id="1" name="Value">&quot;Defeat&quot;</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="3492914726687208" type="Nexus" />
+                        <action id="-3" name="Create object" sid="7009886749067543" type="System">
+                            <param id="0" name="Object to create">PlayAgain</param>
+                            <param id="1" name="Layer">&quot;UI&quot;</param>
+                            <param id="2" name="X">LayoutWidth/2-PlayAgain.Width/2</param>
+                            <param id="3" name="Y">LayoutHeight/2-PlayAgain.Height/2+150</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2114152025189955">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="9500961419893854" type="Lair">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="8715693755599468" type="System">
+                            <param id="0" name="Variable">LevelEndStatus</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="9" name="Broadcast message" sid="6270244921051296" type="Multiplayer">
+                            <param id="0" name="From ID">Multiplayer.FromID</param>
+                            <param id="1" name="Tag">&quot;Victory&quot;</param>
+                            <param id="2" name="Message">&quot;Victory&quot;</param>
+                            <param id="3" name="Mode">1</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="9164960995104554" type="System">
+                            <param id="0" name="Object to create">Victory</param>
+                            <param id="1" name="Layer">&quot;UI&quot;</param>
+                            <param id="2" name="X">LayoutWidth/2</param>
+                            <param id="3" name="Y">LayoutHeight/2</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8271567269695418" type="System">
+                            <param id="0" name="Variable">LevelEndStatus</param>
+                            <param id="1" name="Value">&quot;Victory&quot;</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="8328415492531915" type="Lair" />
+                        <action id="-3" name="Create object" sid="3151352662591252" type="System">
+                            <param id="0" name="Object to create">PlayAgain</param>
+                            <param id="1" name="Layer">&quot;UI&quot;</param>
+                            <param id="2" name="X">LayoutWidth/2-PlayAgain.Width/2</param>
+                            <param id="3" name="Y">LayoutHeight/2-PlayAgain.Height/2+150</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9613413846527504">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="6102989464673986" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="7326356552826192" type="Health">
+                            <param id="0" name="Text">&quot;Health : &quot; &amp; Nexus.Health</param>
+                        </action>
+                        <action id="0" name="Set text" sid="8477721313089929" type="Mana">
+                            <param id="0" name="Text">&quot;Mana: &quot; &amp; Nexus.Mana</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9048292853746229">
+                    <conditions>
+                        <condition id="0" name="On clicked" sid="158288974913509" type="PlayAgain" />
+                    </conditions>
+                    <actions>
+                        <action id="9" name="Broadcast message" sid="1625471204192478" type="Multiplayer">
+                            <param id="0" name="From ID">Multiplayer.FromID</param>
+                            <param id="1" name="Tag">&quot;Restart&quot;</param>
+                            <param id="2" name="Message">&quot;Restart&quot;</param>
+                            <param id="3" name="Mode">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3159673348228025" type="System">
+                            <param id="0" name="Variable">LevelEndStatus</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="1689889981834645" type="System">
+                            <param id="0" name="Layout">MainGame</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" sid="1895770900113535" title="Multiplayer Setup">
+            <sub-events>
+                <event-block sid="5047235259880581">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="9043125860805483" type="System" />
+                        <condition id="7" inverted="1" name="Is connected" sid="6865487705433473" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="11" name="Sync object" sid="593622381784258" type="Multiplayer">
+                            <param id="0" name="Object">Towers</param>
+                            <param id="1" name="Data">3</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">1</param>
+                        </action>
+                        <action id="11" name="Sync object" sid="6615008274162492" type="Multiplayer">
+                            <param id="0" name="Object">Enemies</param>
+                            <param id="1" name="Data">3</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">1</param>
+                        </action>
+                        <action id="11" name="Sync object" sid="8892995317574027" type="Multiplayer">
+                            <param id="0" name="Object">Cards</param>
+                            <param id="1" name="Data">1</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">1</param>
+                        </action>
+                        <action id="11" name="Sync object" sid="7016252399705048" type="Multiplayer">
+                            <param id="0" name="Object">Nexus</param>
+                            <param id="1" name="Data">1</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">2</param>
+                        </action>
+                        <action id="11" name="Sync object" sid="8443637483128335" type="Multiplayer">
+                            <param id="0" name="Object">Lair</param>
+                            <param id="1" name="Data">1</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">2</param>
+                        </action>
+                        <action id="12" name="Sync instance variable" sid="9073773907035879" type="Multiplayer">
+                            <param id="0" name="Object">Nexus</param>
+                            <param id="1" name="Instance variable">Nexus|Health</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Interpolation">1</param>
+                            <param id="4" name="Client value tag">&quot;NexusHealth&quot;</param>
+                        </action>
+                        <action id="12" name="Sync instance variable" sid="2058124719455571" type="Multiplayer">
+                            <param id="0" name="Object">Lair</param>
+                            <param id="1" name="Instance variable">Lair|Health</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Interpolation">1</param>
+                            <param id="4" name="Client value tag">&quot;LairHealth&quot;</param>
+                        </action>
+                        <action id="1" name="Connect" sid="329249651283753" type="Multiplayer">
+                            <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6179914586450711">
+                    <conditions>
+                        <condition id="2" name="On connected" sid="7058802245530242" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Log in" sid="2667818350247315" type="Multiplayer">
+                            <param id="0" name="Alias">Username</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6912623730915416">
+                    <conditions>
+                        <condition id="4" name="On logged in" sid="7770005590542793" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Join room" sid="2757190371166678" type="Multiplayer">
+                            <param id="0" name="Game">GAME_NAME</param>
+                            <param id="1" name="Instance">INSTANCE_NAME</param>
+                            <param id="2" name="Room">ROOM_NAME</param>
+                            <param id="3" name="Max peers">10</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="594625024564966">
+                    <conditions>
+                        <condition id="5" name="On joined room" sid="1945299947151444" type="Multiplayer" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7683276524760584">
+                            <conditions>
+                                <condition id="10" name="Is host" sid="3725165218094677" type="Multiplayer" />
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Set group active" sid="9055902872331318" type="System">
+                                    <param id="0" name="Group name">&quot;Host Controls&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                                <action id="13" name="Associate object with peer" sid="6725909621047672" type="Multiplayer">
+                                    <param id="0" name="Object">Cards</param>
+                                    <param id="1" name="Peer ID">Multiplayer.MyID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="967302100568207">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="4759688087644813" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Set group active" sid="9027525700515567" type="System">
+                                    <param id="0" name="Group name">&quot;Ally Controls&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="6782411603753331" type="Nexus" />
+                                <action id="-9" name="Destroy" sid="765744921806271" type="Lair" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group collapsed="1" description="" inactive="1" sid="9988537701931421" title="Ally Controls">
