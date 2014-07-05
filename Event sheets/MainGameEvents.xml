@@ -228,92 +228,6 @@
         </event-group>
         <event-group description="" inactive="1" sid="9545034405581386" title="Host Controls">
             <sub-events>
-                <event-group description="" inactive="1" sid="7435193017635269" title="Lair Control">
-                    <sub-events>
-                        <event-block sid="3762954102660001">
-                            <conditions>
-                                <condition id="-6" name="Every X seconds" sid="8505455941718818" type="System">
-                                    <param id="0" name="Interval (seconds)">EnemySpawnTime</param>
-                                </condition>
-                            </conditions>
-                            <actions />
-                            <sub-events>
-                                <comment>Every time an enemy spawn, the spawn interval reduces slightly.  This makes them very gradually come faster!  Make sure it doesn&apos;t go below every 0.5 seconds though.</comment>
-                                <event-block sid="3811749441163612">
-                                    <conditions>
-                                        <condition id="-14" name="Compare variable" sid="8142076536884116" type="System">
-                                            <param id="0" name="Variable">EnemySpawnTime</param>
-                                            <param id="1" name="Comparison">4</param>
-                                            <param id="2" name="Value">0.5</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-11" name="Subtract from" sid="7782623380689833" type="System">
-                                            <param id="0" name="Variable">EnemySpawnTime</param>
-                                            <param id="1" name="Value">0.01</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="1832309412571278">
-                                    <conditions>
-                                        <condition id="-7" name="Compare instance variable" sid="9403852907279757" type="Lair">
-                                            <param id="0" name="Instance variable">Mana</param>
-                                            <param id="1" name="Comparison">5</param>
-                                            <param id="2" name="Value">Enemies.ManaCost</param>
-                                        </condition>
-                                        <condition disabled="1" id="1" inverted="1" name="Is overlapping another object" sid="1798210250618697" type="Spawnbox">
-                                            <param id="0" name="Object">Enemies</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Spawn another object" sid="6525767773435702" type="Lair">
-                                            <param id="0" name="Object">Enemies</param>
-                                            <param id="1" name="Layer">&quot;Game&quot;</param>
-                                            <param id="2" name="Image point">0</param>
-                                        </action>
-                                        <action id="-12" name="Subtract from" sid="2121904786830861" type="Lair">
-                                            <param id="0" name="Instance variable">Mana</param>
-                                            <param id="1" name="Value">Enemies.ManaCost</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="9890357821315152">
-                                    <conditions>
-                                        <condition id="-7" name="Compare instance variable" sid="2202441362346379" type="Lair">
-                                            <param id="0" name="Instance variable">Mana</param>
-                                            <param id="1" name="Comparison">3</param>
-                                            <param id="2" name="Value">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-12" name="Set group active" sid="5450063411490107" type="System">
-                                            <param id="0" name="Group name">&quot;Lair Control&quot;</param>
-                                            <param id="1" name="State">0</param>
-                                        </action>
-                                        <action id="-12" name="Set group active" sid="2834428872928982" type="System">
-                                            <param id="0" name="Group name">&quot;Enemy Control&quot;</param>
-                                            <param id="1" name="State">0</param>
-                                        </action>
-                                        <action id="3" name="Set enabled" sid="790312482233815" type="TurnButton">
-                                            <param id="0" name="Mode">1</param>
-                                        </action>
-                                        <action id="-11" name="Add to" sid="6037770680057766" type="Nexus">
-                                            <param id="0" name="Instance variable">Mana</param>
-                                            <param id="1" name="Value">3</param>
-                                        </action>
-                                        <action id="0" name="Set text" sid="3340296975521712" type="TurnDisplay">
-                                            <param id="0" name="Text">&quot;Your Turn&quot;</param>
-                                        </action>
-                                        <action behavior="Turret" id="5" name="Set enabled" sid="30709463309881" type="Towers">
-                                            <param id="0" name="State">0</param>
-                                        </action>
-                                        <action behavior="Pathfinding" id="2" name="Stop" sid="3713708175276693" type="Enemies" />
-                                    </actions>
-                                </event-block>
-                            </sub-events>
-                        </event-block>
-                    </sub-events>
-                </event-group>
                 <event-group description="" inactive="1" sid="1912897602988224" title="Enemy Control">
                     <sub-events>
                         <event-block sid="7919657993306624">
@@ -442,7 +356,7 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block sid="6557382573573599">
+                        <event-block disabled="1" sid="6557382573573599">
                             <conditions>
                                 <condition behavior="Pathfinding" id="1" name="On failed to find path" sid="8021990082027965" type="Enemies" />
                             </conditions>
@@ -455,9 +369,95 @@
                         </event-block>
                     </sub-events>
                 </event-group>
+                <event-group description="" inactive="1" sid="7435193017635269" title="Lair Control">
+                    <sub-events>
+                        <event-block sid="3762954102660001">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="8505455941718818" type="System">
+                                    <param id="0" name="Interval (seconds)">EnemySpawnTime</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>Every time an enemy spawn, the spawn interval reduces slightly.  This makes them very gradually come faster!  Make sure it doesn&apos;t go below every 0.5 seconds though.</comment>
+                                <event-block sid="3811749441163612">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="8142076536884116" type="System">
+                                            <param id="0" name="Variable">EnemySpawnTime</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0.5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Subtract from" sid="7782623380689833" type="System">
+                                            <param id="0" name="Variable">EnemySpawnTime</param>
+                                            <param id="1" name="Value">0.01</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="9890357821315152">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="2202441362346379" type="Lair">
+                                            <param id="0" name="Instance variable">Mana</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Set group active" sid="2834428872928982" type="System">
+                                            <param id="0" name="Group name">&quot;Enemy Control&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
+                                        <action id="-12" name="Set group active" sid="5450063411490107" type="System">
+                                            <param id="0" name="Group name">&quot;Lair Control&quot;</param>
+                                            <param id="1" name="State">0</param>
+                                        </action>
+                                        <action id="3" name="Set enabled" sid="790312482233815" type="TurnButton">
+                                            <param id="0" name="Mode">1</param>
+                                        </action>
+                                        <action id="-11" name="Add to" sid="6037770680057766" type="Nexus">
+                                            <param id="0" name="Instance variable">Mana</param>
+                                            <param id="1" name="Value">3</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="3340296975521712" type="TurnDisplay">
+                                            <param id="0" name="Text">&quot;Your Turn&quot;</param>
+                                        </action>
+                                        <action behavior="Turret" id="5" name="Set enabled" sid="30709463309881" type="Towers">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                        <action behavior="Pathfinding" id="2" name="Stop" sid="3713708175276693" type="Enemies" />
+                                    </actions>
+                                </event-block>
+                                <event-block sid="1832309412571278">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="9403852907279757" type="Lair">
+                                            <param id="0" name="Instance variable">Mana</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Value">Enemies.ManaCost</param>
+                                        </condition>
+                                        <condition disabled="1" id="1" inverted="1" name="Is overlapping another object" sid="1798210250618697" type="Spawnbox">
+                                            <param id="0" name="Object">Enemies</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" sid="6525767773435702" type="Lair">
+                                            <param id="0" name="Object">Enemies</param>
+                                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="-12" name="Subtract from" sid="2121904786830861" type="Lair">
+                                            <param id="0" name="Instance variable">Mana</param>
+                                            <param id="1" name="Value">Enemies.ManaCost</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="9593361770267241" title="Endgame Conditions">
+        <event-group description="" sid="9593361770267241" title="Endgame Conditions">
             <sub-events>
                 <event-block sid="5389525662328113">
                     <conditions>
@@ -489,7 +489,14 @@
                             <param id="0" name="Variable">LevelEndStatus</param>
                             <param id="1" name="Value">&quot;Defeat&quot;</param>
                         </action>
-                        <action id="-9" name="Destroy" sid="3492914726687208" type="Nexus" />
+                        <action id="-10" name="Set value" sid="3492914726687208" type="Nexus">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">10</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="9246090472745061" type="Nexus">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
                         <action id="-3" name="Create object" sid="7009886749067543" type="System">
                             <param id="0" name="Object to create">PlayAgain</param>
                             <param id="1" name="Layer">&quot;UI&quot;</param>
@@ -528,7 +535,14 @@
                             <param id="0" name="Variable">LevelEndStatus</param>
                             <param id="1" name="Value">&quot;Victory&quot;</param>
                         </action>
-                        <action id="-9" name="Destroy" sid="8328415492531915" type="Lair" />
+                        <action id="-10" name="Set value" sid="8328415492531915" type="Lair">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">10</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="9612355860242862" type="Lair">
+                            <param id="0" name="Instance variable">Mana</param>
+                            <param id="1" name="Value">5</param>
+                        </action>
                         <action id="-3" name="Create object" sid="3151352662591252" type="System">
                             <param id="0" name="Object to create">PlayAgain</param>
                             <param id="1" name="Layer">&quot;UI&quot;</param>
@@ -565,14 +579,43 @@
                             <param id="0" name="Variable">LevelEndStatus</param>
                             <param id="1" name="Value">&quot;&quot;</param>
                         </action>
-                        <action id="-2" name="Go to layout" sid="1689889981834645" type="System">
-                            <param id="0" name="Layout">MainGame</param>
+                        <action id="-9" name="Destroy" sid="8722727616459238" type="Cards" />
+                        <action id="-9" name="Destroy" sid="6084606500352275" type="Enemies" />
+                        <action id="-9" name="Destroy" sid="1399531444889908" type="Towers" />
+                        <action id="-12" name="Set group active" sid="6231605854082688" type="System">
+                            <param id="0" name="Group name">&quot;Enemy Control&quot;</param>
+                            <param id="1" name="State">0</param>
                         </action>
+                        <action id="-12" name="Set group active" sid="3694454480154258" type="System">
+                            <param id="0" name="Group name">&quot;Lair Control&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="1606847284338811" type="System">
+                            <param id="0" name="Object to create">Cards</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="X">64 * gHandSize * 2</param>
+                            <param id="3" name="Y">256</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="5709403897266936" type="System">
+                            <param id="0" name="Object to create">Cards</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="X">64 * gHandSize * 2</param>
+                            <param id="3" name="Y">256</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="7123277117117364" type="System">
+                            <param id="0" name="Object to create">Cards</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="X">64 * gHandSize * 2</param>
+                            <param id="3" name="Y">256</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="9648107227249978" type="Defeat" />
+                        <action id="-9" name="Destroy" sid="94145344251291" type="Victory" />
+                        <action id="-9" name="Destroy" sid="6563651446974066" type="PlayAgain" />
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="1895770900113535" title="Multiplayer Setup">
+        <event-group description="" sid="1895770900113535" title="Multiplayer Setup">
             <sub-events>
                 <event-block sid="5047235259880581">
                     <conditions>
@@ -673,6 +716,7 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <comment>When we aren&apos;t the host we don&apos;t need a nexus or lair</comment>
                         <event-block sid="967302100568207">
                             <conditions>
                                 <condition id="-22" name="Else" sid="4759688087644813" type="System" />
