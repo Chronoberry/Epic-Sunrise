@@ -4,6 +4,8 @@
     <name>Login Events</name>
     <events>
         <comment>Client username</comment>
+        <variable comment="Dumb logging to figure out stuff" constant="0" name="STATUS_LOG" sid="6221838709222545" static="0" type="text">init</variable>
+        <variable comment="The number of open game rooms" constant="0" name="NumRooms" sid="8216804306561586" static="0" type="number">0</variable>
         <variable constant="0" name="Username" sid="3360562530627326" static="0" type="text"></variable>
         <event-block sid="6028382050275193">
             <conditions>
@@ -51,23 +53,130 @@
                     <param id="0" name="Key">13 (Return)</param>
                 </condition>
             </conditions>
-            <actions />
+            <actions>
+                <action id="-9" name="Set value" sid="1064661533007643" type="System">
+                    <param id="0" name="Variable">Username</param>
+                    <param id="1" name="Value">UsernameTextBox.Text</param>
+                </action>
+            </actions>
             <sub-events>
                 <event-block sid="6452125516255997">
                     <conditions>
                         <condition id="12" name="Supports multiplayer" sid="3848437257850738" type="Multiplayer" />
+                        <condition id="0" inverted="1" name="Compare text" sid="2304994793911897" type="UsernameTextBox">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" sid="1064661533007643" type="System">
-                            <param id="0" name="Variable">Username</param>
-                            <param id="1" name="Value">UsernameTextBox.Text</param>
+                        <action id="1" name="Connect" sid="8602081269582122" type="Multiplayer">
+                            <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
                         </action>
-                        <action id="-25" name="Go to layout (by name)" sid="2993975562028656" type="System">
-                            <param id="0" name="Layout">&quot;MainGame&quot;</param>
+                        <action id="0" name="Set text" sid="8128301999290274" type="StatusLabel">
+                            <param id="0" name="Text">&quot;Attempting to Connect&quot;</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="2037647495336896" type="UsernameTextBox" />
+                        <action id="-9" name="Destroy" sid="8076007971292093" type="JoinButton" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="572860414905163">
+            <conditions>
+                <condition id="2" name="On connected" sid="5150290541988749" type="Multiplayer" />
+            </conditions>
+            <actions>
+                <action id="4" name="Log in" sid="8784768320617983" type="Multiplayer">
+                    <param id="0" name="Alias">Username</param>
+                </action>
+                <action id="-9" name="Set value" sid="2300109800557984" type="System">
+                    <param id="0" name="Variable">STATUS_LOG</param>
+                    <param id="1" name="Value">&quot;Logging In&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5498878196081357">
+            <conditions>
+                <condition id="4" name="On logged in" sid="2760682514416732" type="Multiplayer" />
+            </conditions>
+            <actions>
+                <action id="20" name="Request room list" sid="9562936470948296" type="Multiplayer">
+                    <param id="0" name="Game">GAME_NAME</param>
+                    <param id="1" name="Instance">INSTANCE_NAME</param>
+                    <param id="2" name="Which">0</param>
+                </action>
+                <action id="0" name="Set text" sid="6558391769038684" type="StatusLabel">
+                    <param id="0" name="Text">&quot;Requested game room list&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1255755896032282">
+            <conditions>
+                <condition id="21" name="On room list" sid="8472027903029295" type="Multiplayer" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="7282006553282989" type="System">
+                    <param id="0" name="Variable">NumRooms</param>
+                    <param id="1" name="Value">Multiplayer.ListRoomCount</param>
+                </action>
+                <action id="0" name="Set text" sid="8744106394242592" type="StatusLabel">
+                    <param id="0" name="Text">&quot;Number of current games: &quot; &amp; Multiplayer.ListRoomCount</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="3637101675636769">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7512003847290986" type="System">
+                            <param id="0" name="Variable">NumRooms</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="4627635324048628" type="RoomNameLabel">
+                            <param id="0" name="Text">Multiplayer.ListRoomName(0)</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="3769299845257036" type="System">
+                            <param id="0" name="Object to create">NewGameButton</param>
+                            <param id="1" name="Layer">&quot;UI&quot;</param>
+                            <param id="2" name="X">Title.X</param>
+                            <param id="3" name="Y">Title.Y + 100</param>
+                        </action>
+                        <action id="2" name="Set visible" sid="4013754646948448" type="NewGameButton">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="1929005060197822" type="NewGameButton">
+                            <param id="0" name="Text">Multiplayer.ListRoomName(0)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1398745215726937">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="1000269235454699" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Set visible" sid="954334513135913" type="NewGameButton">
+                            <param id="0" name="Visibility">1</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
+        </event-block>
+        <event-block sid="4707140462326537">
+            <conditions>
+                <condition id="0" name="On clicked" sid="6138664430185774" type="NewGameButton" />
+            </conditions>
+            <actions>
+                <action id="5" name="Join room" sid="2893299097875593" type="Multiplayer">
+                    <param id="0" name="Game">GAME_NAME</param>
+                    <param id="1" name="Instance">INSTANCE_NAME</param>
+                    <param id="2" name="Room">ROOM_NAME</param>
+                    <param id="3" name="Max peers">10</param>
+                </action>
+                <action id="-25" name="Go to layout (by name)" sid="2993975562028656" type="System">
+                    <param id="0" name="Layout">&quot;MainGame&quot;</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

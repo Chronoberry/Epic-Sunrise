@@ -3,13 +3,13 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>MainGameEvents</name>
     <events>
-        <variable constant="1" name="INSTANCE_NAME" sid="8263069236037638" static="0" type="text">&quot;default&quot;</variable>
-        <variable constant="1" name="GAME_NAME" sid="7581878779398404" static="0" type="text">&quot;Chronoberry-EpicSunrise&quot;</variable>
-        <variable constant="1" name="ROOM_NAME" sid="8509736839750727" static="0" type="text">&quot;main&quot;</variable>
+        <variable constant="1" name="INSTANCE_NAME" sid="8263069236037638" static="0" type="text">default</variable>
+        <variable constant="1" name="GAME_NAME" sid="7581878779398404" static="0" type="text">Chronoberry-EpicSunrise</variable>
+        <variable constant="1" name="ROOM_NAME" sid="8509736839750727" static="0" type="text">main</variable>
         <variable constant="0" name="LevelEndStatus" sid="1112376278473827" static="0" type="text"></variable>
         <variable comment="The turret the user has currently selected" constant="0" name="TowerSelect" sid="6379256797545093" static="0" type="text">tower1</variable>
         <variable comment="Seconds interval between spawning a new enemy." constant="0" name="EnemySpawnTime" sid="6475113749160177" static="0" type="number">2</variable>
-        <event-group description="" sid="4910937020671933" title="Global">
+        <event-group collapsed="1" description="" sid="4910937020671933" title="Global">
             <sub-events>
                 <event-block sid="56000430988418">
                     <conditions>
@@ -55,7 +55,7 @@
                 <comment>Set a loop to update our text and check our win/lose conditions</comment>
             </sub-events>
         </event-group>
-        <event-group description="" sid="6849072976989572" title="Turn">
+        <event-group collapsed="1" description="" sid="6849072976989572" title="Turn">
             <sub-events>
                 <event-block sid="376881151367262">
                     <conditions>
@@ -93,7 +93,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" inactive="1" sid="152918491606407" title="Tower Control">
+        <event-group collapsed="1" description="" inactive="1" sid="152918491606407" title="Tower Control">
             <sub-events>
                 <comment>When shooting, spawn a bullet.</comment>
                 <event-block sid="6578484286418145">
@@ -188,6 +188,12 @@
                                 <action id="-12" name="Subtract from" sid="4790085350498524" type="Nexus">
                                     <param id="0" name="Instance variable">Mana</param>
                                     <param id="1" name="Value">Cards.ManaCost</param>
+                                </action>
+                                <action id="9" name="Broadcast message" sid="9941599830030958" type="Multiplayer">
+                                    <param id="0" name="From ID">Multiplayer.MyID</param>
+                                    <param id="1" name="Tag">&quot;CreateTower&quot;</param>
+                                    <param id="2" name="Message">TowerSelect</param>
+                                    <param id="3" name="Mode">0</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -320,6 +326,10 @@
                                     <param id="0" name="Instance variable">Health</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="-11" name="Add to" sid="3648077606444528" type="Nexus">
+                                    <param id="0" name="Instance variable">Mana</param>
+                                    <param id="1" name="Value">Enemies.ManaCost</param>
+                                </action>
                                 <action id="3" name="Set progress" sid="9190703007860671" type="NexusHealthBar">
                                     <param id="0" name="Value">Lair.Health</param>
                                 </action>
@@ -415,10 +425,6 @@
                                         <action id="3" name="Set enabled" sid="790312482233815" type="TurnButton">
                                             <param id="0" name="Mode">1</param>
                                         </action>
-                                        <action id="-11" name="Add to" sid="6037770680057766" type="Nexus">
-                                            <param id="0" name="Instance variable">Mana</param>
-                                            <param id="1" name="Value">3</param>
-                                        </action>
                                         <action id="0" name="Set text" sid="3340296975521712" type="TurnDisplay">
                                             <param id="0" name="Text">&quot;Your Turn&quot;</param>
                                         </action>
@@ -455,9 +461,28 @@
                         </event-block>
                     </sub-events>
                 </event-group>
+                <event-block sid="1386514434358536">
+                    <conditions>
+                        <condition id="15" name="On peer message" sid="6993407118229384" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;CreateTower&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Create instance" sid="3396989243027128" type="Nickname">
+                            <param id="0" name="Nickname">Multiplayer.Message</param>
+                            <param id="1" name="X">round((Cards.X - 32) / 64) * 64 + 64</param>
+                            <param id="2" name="Y">round((Cards.Y - 32) / 64) * 64  + 32</param>
+                            <param id="3" name="Layer">&quot;Game&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5609374538318031" type="System">
+                            <param id="0" name="Variable">STATUS_LOG</param>
+                            <param id="1" name="Value">Multiplayer.Message</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="9593361770267241" title="Endgame Conditions">
+        <event-group collapsed="1" description="" sid="9593361770267241" title="Endgame Conditions">
             <sub-events>
                 <event-block sid="5389525662328113">
                     <conditions>
@@ -620,7 +645,6 @@
                 <event-block sid="5047235259880581">
                     <conditions>
                         <condition id="-2" name="On start of layout" sid="9043125860805483" type="System" />
-                        <condition id="7" inverted="1" name="Is connected" sid="6865487705433473" type="Multiplayer" />
                     </conditions>
                     <actions>
                         <action id="11" name="Sync object" sid="593622381784258" type="Multiplayer">
@@ -635,20 +659,8 @@
                             <param id="2" name="Precision">1</param>
                             <param id="3" name="Bandwidth">1</param>
                         </action>
-                        <action id="11" name="Sync object" sid="8892995317574027" type="Multiplayer">
-                            <param id="0" name="Object">Cards</param>
-                            <param id="1" name="Data">1</param>
-                            <param id="2" name="Precision">1</param>
-                            <param id="3" name="Bandwidth">1</param>
-                        </action>
                         <action id="11" name="Sync object" sid="7016252399705048" type="Multiplayer">
                             <param id="0" name="Object">Nexus</param>
-                            <param id="1" name="Data">1</param>
-                            <param id="2" name="Precision">1</param>
-                            <param id="3" name="Bandwidth">2</param>
-                        </action>
-                        <action id="11" name="Sync object" sid="8443637483128335" type="Multiplayer">
-                            <param id="0" name="Object">Lair</param>
                             <param id="1" name="Data">1</param>
                             <param id="2" name="Precision">1</param>
                             <param id="3" name="Bandwidth">2</param>
@@ -660,6 +672,12 @@
                             <param id="3" name="Interpolation">1</param>
                             <param id="4" name="Client value tag">&quot;NexusHealth&quot;</param>
                         </action>
+                        <action id="11" name="Sync object" sid="8443637483128335" type="Multiplayer">
+                            <param id="0" name="Object">Lair</param>
+                            <param id="1" name="Data">1</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">2</param>
+                        </action>
                         <action id="12" name="Sync instance variable" sid="2058124719455571" type="Multiplayer">
                             <param id="0" name="Object">Lair</param>
                             <param id="1" name="Instance variable">Lair|Health</param>
@@ -667,31 +685,24 @@
                             <param id="3" name="Interpolation">1</param>
                             <param id="4" name="Client value tag">&quot;LairHealth&quot;</param>
                         </action>
-                        <action id="1" name="Connect" sid="329249651283753" type="Multiplayer">
-                            <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
+                        <action id="12" name="Sync instance variable" sid="3669554743594917" type="Multiplayer">
+                            <param id="0" name="Object">Lair</param>
+                            <param id="1" name="Instance variable">Lair|Mana</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Interpolation">1</param>
+                            <param id="4" name="Client value tag">&quot;LairMana&quot;</param>
                         </action>
-                    </actions>
-                </event-block>
-                <event-block sid="6179914586450711">
-                    <conditions>
-                        <condition id="2" name="On connected" sid="7058802245530242" type="Multiplayer" />
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Log in" sid="2667818350247315" type="Multiplayer">
-                            <param id="0" name="Alias">Username</param>
+                        <action id="11" name="Sync object" sid="6998118892063857" type="Multiplayer">
+                            <param id="0" name="Object">TowerBullet</param>
+                            <param id="1" name="Data">1</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">0</param>
                         </action>
-                    </actions>
-                </event-block>
-                <event-block sid="6912623730915416">
-                    <conditions>
-                        <condition id="4" name="On logged in" sid="7770005590542793" type="Multiplayer" />
-                    </conditions>
-                    <actions>
-                        <action id="5" name="Join room" sid="2757190371166678" type="Multiplayer">
-                            <param id="0" name="Game">GAME_NAME</param>
-                            <param id="1" name="Instance">INSTANCE_NAME</param>
-                            <param id="2" name="Room">ROOM_NAME</param>
-                            <param id="3" name="Max peers">10</param>
+                        <action id="11" name="Sync object" sid="2893934891252571" type="Multiplayer">
+                            <param id="0" name="Object">TowerOdinBullet</param>
+                            <param id="1" name="Data">1</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -710,7 +721,7 @@
                                     <param id="0" name="Group name">&quot;Host Controls&quot;</param>
                                     <param id="1" name="State">1</param>
                                 </action>
-                                <action id="13" name="Associate object with peer" sid="6725909621047672" type="Multiplayer">
+                                <action disabled="1" id="13" name="Associate object with peer" sid="6725909621047672" type="Multiplayer">
                                     <param id="0" name="Object">Cards</param>
                                     <param id="1" name="Peer ID">Multiplayer.MyID</param>
                                 </action>
@@ -726,15 +737,24 @@
                                     <param id="0" name="Group name">&quot;Ally Controls&quot;</param>
                                     <param id="1" name="State">1</param>
                                 </action>
+                                <action id="13" name="Associate object with peer" sid="6083609651547751" type="Multiplayer">
+                                    <param id="0" name="Object">Cards</param>
+                                    <param id="1" name="Peer ID">Multiplayer.MyID</param>
+                                </action>
+                                <action id="13" name="Associate object with peer" sid="7719838636315791" type="Multiplayer">
+                                    <param id="0" name="Object">Towers</param>
+                                    <param id="1" name="Peer ID">Multiplayer.MyID</param>
+                                </action>
                                 <action id="-9" name="Destroy" sid="6782411603753331" type="Nexus" />
                                 <action id="-9" name="Destroy" sid="765744921806271" type="Lair" />
+                                <action id="-9" name="Destroy" sid="8070421337990752" type="TurnButton" />
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" inactive="1" sid="9988537701931421" title="Ally Controls">
+        <event-group description="" inactive="1" sid="9988537701931421" title="Ally Controls">
             <sub-events>
                 <event-block sid="5463145454801689">
                     <conditions>
@@ -773,9 +793,42 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-2" name="Go to layout" sid="711545398857223" type="System">
-                            <param id="0" name="Layout">MainGame</param>
+                        <action id="-9" name="Set value" sid="6691499347189784" type="System">
+                            <param id="0" name="Variable">LevelEndStatus</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
                         </action>
+                        <action id="-9" name="Destroy" sid="4115303901199249" type="Cards" />
+                        <action id="-9" name="Destroy" sid="8338051425922155" type="Enemies" />
+                        <action id="-9" name="Destroy" sid="3159738147934827" type="Towers" />
+                        <action id="-12" name="Set group active" sid="3136058206413453" type="System">
+                            <param id="0" name="Group name">&quot;Enemy Control&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="5342746015296292" type="System">
+                            <param id="0" name="Group name">&quot;Lair Control&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="3907244830883431" type="System">
+                            <param id="0" name="Object to create">Cards</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="X">64 * gHandSize * 2</param>
+                            <param id="3" name="Y">256</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="7247432408201362" type="System">
+                            <param id="0" name="Object to create">Cards</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="X">64 * gHandSize * 2</param>
+                            <param id="3" name="Y">256</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="6928386837122229" type="System">
+                            <param id="0" name="Object to create">Cards</param>
+                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                            <param id="2" name="X">64 * gHandSize * 2</param>
+                            <param id="3" name="Y">256</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="4522419361200158" type="Defeat" />
+                        <action id="-9" name="Destroy" sid="9548676018584437" type="Victory" />
+                        <action id="-9" name="Destroy" sid="320584821808543" type="PlayAgain" />
                     </actions>
                 </event-block>
                 <event-block sid="6359498031622163">

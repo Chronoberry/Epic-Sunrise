@@ -55,7 +55,7 @@
     </configuration-settings>
     <object-folder expanded="1">
         <object-folder expanded="1" name="Login">
-            <object-type name="FormLabel" sid="413805614457078">
+            <object-type name="Title" sid="413805614457078">
                 <plugin id="Text" />
             </object-type>
             <object-type name="JoinButton" sid="8480088374159651">
@@ -64,7 +64,7 @@
             <object-type name="UsernameTextBox" sid="4276333188652361">
                 <plugin id="TextBox" />
             </object-type>
-            <object-type name="Title" sid="9106326938188165">
+            <object-type name="Butts" sid="9106326938188165">
                 <plugin id="Text" />
             </object-type>
             <object-type name="LoginBackground" sid="2645904545109157">
@@ -74,6 +74,15 @@
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                     </animation>
                 </animation-folder>
+            </object-type>
+            <object-type name="RoomNameLabel" sid="6520420578114029">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="NewGameButton" sid="7329145126599247">
+                <plugin id="Button" />
+            </object-type>
+            <object-type name="StatusLabel" sid="3668162703520146">
+                <plugin id="Text" />
             </object-type>
         </object-folder>
         <object-folder expanded="1" name="UI Screens">
