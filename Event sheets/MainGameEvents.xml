@@ -55,7 +55,7 @@
                 <comment>Set a loop to update our text and check our win/lose conditions</comment>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="6849072976989572" title="Turn">
+        <event-group description="" sid="6849072976989572" title="Turn">
             <sub-events>
                 <event-block sid="376881151367262">
                     <conditions>
@@ -149,6 +149,42 @@
         </event-group>
         <event-group description="This is how you play the tower cards" sid="5672389924595487" title="Card Deployment">
             <sub-events>
+                <event-block sid="1386514434358536">
+                    <conditions>
+                        <condition id="15" name="On peer message" sid="6993407118229384" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;CreateTower&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Create instance" sid="3396989243027128" type="Nickname">
+                            <param id="0" name="Nickname">Multiplayer.Message</param>
+                            <param id="1" name="X">round((Cards.X - 32) / 64) * 64 + 64</param>
+                            <param id="2" name="Y">round((Cards.Y - 32) / 64) * 64  + 32</param>
+                            <param id="3" name="Layer">&quot;Game&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5609374538318031" type="System">
+                            <param id="0" name="Variable">STATUS_LOG</param>
+                            <param id="1" name="Value">Multiplayer.Message</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block disabled="1" sid="9082340837661544">
+                    <conditions>
+                        <condition id="16" name="On any peer message" sid="6972227315240917" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Create instance" sid="5369949315972584" type="Nickname">
+                            <param id="0" name="Nickname">Multiplayer.Message</param>
+                            <param id="1" name="X">round((Cards.X - 32) / 64) * 64 + 64</param>
+                            <param id="2" name="Y">round((Cards.Y - 32) / 64) * 64  + 32</param>
+                            <param id="3" name="Layer">&quot;Game&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7726651189967186" type="System">
+                            <param id="0" name="Variable">STATUS_LOG</param>
+                            <param id="1" name="Value">Multiplayer.Message</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <event-block sid="7272489924294161">
                     <conditions>
                         <condition behavior="DragDrop" id="1" name="On drag start" sid="5863215678642962" type="Cards" />
@@ -189,11 +225,15 @@
                                     <param id="0" name="Instance variable">Mana</param>
                                     <param id="1" name="Value">Cards.ManaCost</param>
                                 </action>
-                                <action id="9" name="Broadcast message" sid="9941599830030958" type="Multiplayer">
-                                    <param id="0" name="From ID">Multiplayer.MyID</param>
+                                <action id="8" name="Send message" sid="5233385093648096" type="Multiplayer">
+                                    <param id="0" name="Peer ID">&quot;&quot;</param>
                                     <param id="1" name="Tag">&quot;CreateTower&quot;</param>
                                     <param id="2" name="Message">TowerSelect</param>
                                     <param id="3" name="Mode">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="3479926738968361" type="System">
+                                    <param id="0" name="Variable">STATUS_LOG</param>
+                                    <param id="1" name="Value">&quot;sent CreateTower&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -461,28 +501,9 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-block sid="1386514434358536">
-                    <conditions>
-                        <condition id="15" name="On peer message" sid="6993407118229384" type="Multiplayer">
-                            <param id="0" name="Tag">&quot;CreateTower&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="2" name="Create instance" sid="3396989243027128" type="Nickname">
-                            <param id="0" name="Nickname">Multiplayer.Message</param>
-                            <param id="1" name="X">round((Cards.X - 32) / 64) * 64 + 64</param>
-                            <param id="2" name="Y">round((Cards.Y - 32) / 64) * 64  + 32</param>
-                            <param id="3" name="Layer">&quot;Game&quot;</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="5609374538318031" type="System">
-                            <param id="0" name="Variable">STATUS_LOG</param>
-                            <param id="1" name="Value">Multiplayer.Message</param>
-                        </action>
-                    </actions>
-                </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="9593361770267241" title="Endgame Conditions">
+        <event-group description="" sid="9593361770267241" title="Endgame Conditions">
             <sub-events>
                 <event-block sid="5389525662328113">
                     <conditions>
@@ -636,6 +657,20 @@
                         <action id="-9" name="Destroy" sid="9648107227249978" type="Defeat" />
                         <action id="-9" name="Destroy" sid="94145344251291" type="Victory" />
                         <action id="-9" name="Destroy" sid="6563651446974066" type="PlayAgain" />
+                        <action id="-12" name="Set group active" sid="19576073418298" type="System">
+                            <param id="0" name="Group name">&quot;Enemy Control&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="1833877735949467" type="System">
+                            <param id="0" name="Group name">&quot;Lair Control&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="3" name="Set enabled" sid="9417050290413159" type="TurnButton">
+                            <param id="0" name="Mode">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="3613726592892376" type="TurnDisplay">
+                            <param id="0" name="Text">&quot;Your Turn&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
